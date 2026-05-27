@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Primary SEO -->
+  <title>ST 2110 &amp; Broadcast IP Consulting | Aspire IT Systems</title>
+  <meta name="description" content="Expert consulting for broadcasters and post houses across North America: ST 2110 deployments, SDI to IP migration, PTP timing, multicast and broadcast-grade IP fabric design. 25% CapEx reduction delivered on Arista." />
+  <link rel="canonical" href="https://www.aspireitsystems.io/media-broadcast.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Aspire IT Systems" />
+  <meta property="og:url" content="https://www.aspireitsystems.io/media-broadcast.html" />
+  <meta property="og:title" content="Broadcast IT Consulting - ST 2110, SDI to IP Migration & IP Fabric Design" />
+  <meta property="og:description" content="Broadcast network architects who've delivered 25% CapEx reduction on a national broadcaster's Arista IP fabric. ST 2110, PTP, multicast, converged LAN/WAN." />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Broadcast IT Consulting - ST 2110 & IP Fabric Design | Aspire IT Systems" />
+  <meta name="twitter:description" content="ST 2110 deployments, SDI to IP migration, PTP timing, broadcast IP fabric design. 25% CapEx reduction delivered on Arista." />
+
+  <!-- Service schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Broadcast IT and Network Consulting",
+    "provider": {
+      "@type": "Organization",
+      "name": "Aspire IT Systems",
+      "url": "https://www.aspireitsystems.io/",
+      "areaServed": {
+        "@type": "Place",
+        "name": "North America"
+      }
+    },
+    "name": "Media & Broadcast IT Consulting - ST 2110, SDI to IP Migration, Broadcast IP Fabric",
+    "description": "Design, deployment and migration services for broadcasters, post-production houses, sports venues and live-event producers. ST 2110 / ST 2022-7 IP fabrics, PTP timing, multicast / PIM, QoS engineering, SDI to IP cutovers, and converged LAN/WAN for real-time media.",
+    "url": "https://www.aspireitsystems.io/media-broadcast.html",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Broadcast IT Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ST 2110 IP fabric design and deployment" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SDI to IP migration consulting" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PTP IEEE 1588 timing implementation" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Multicast and PIM design for broadcast" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Arista IP fabric deployment for media" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "NMOS discovery and connection management" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Converged LAN/WAN for broadcast production" } }
+      ]
+    }
+  }
+  </script>
+
+  <!-- FAQ schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is ST 2110 and why do broadcasters move from SDI to IP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ST 2110 is the SMPTE family of standards (ST 2110-10, -20, -21, -22, -30, -40) for transporting uncompressed video, audio and ancillary data over managed IP networks. Broadcasters migrate from SDI because IP fabrics are software-defined and resolution-agnostic - the same fabric carries HD, 4K and 8K, which removes the per-resolution cabling and matrix replacement cycle. The result is lower long-term CapEx, REMI-capable workflows and a path to cloud production."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does an SDI to IP migration typically take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A facility migration usually runs 6 to 18 months end-to-end depending on facility size, the number of production rooms in scope and whether the migration is greenfield or phased over an active SDI plant. We design phased cutover plans so on-air operations are never interrupted during the transition."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do we have to replace all our SDI gear at once?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Most real-world deployments are hybrid SDI/IP for years. Gateways translate SDI to ST 2110 (and back) so legacy cameras, routers and production switchers continue to operate alongside the new IP fabric. The migration is staged by control room, by show or by facility, on a timeline that fits your contract and equipment lifecycle."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which IP fabric vendors do you deploy for broadcast?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Primarily Arista (R-Series + CloudVision) for non-blocking fabrics, and Cisco IPFM (Nexus 9000 + DCNM) for Cisco-aligned operations. We're vendor-agnostic - we recommend the platform that fits your operational team's skills, your scale requirements and your existing tooling, not a vendor we have margin on."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is PTP timing critical and how do you design for it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Without sub-microsecond timing accuracy, audio and video streams drift apart and frame edges lose alignment - the IP equivalent of a black flash. We deploy PTP (IEEE 1588-2008 / -2019) with boundary clocks at every leaf, redundant grandmasters with GPS or Rubidium discipline, and SMPTE ST 2059-2 profiles. Monitoring includes hop-by-hop offset and timing failover validation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you rescue a broadcast migration that's gone off the rails?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. About a third of our broadcast engagements start as rescue work - a system integrator's design that isn't passing PTP validation, multicast that storms under load, or an NMOS layer that won't reliably switch sources. We come in, audit, identify root cause and either correct the existing build or re-architect the parts that need it. We've never failed a broadcast engagement."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.aspireitsystems.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.aspireitsystems.io/services.html" },
+      { "@type": "ListItem", "position": 3, "name": "Media & Broadcast" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=m5" />
+</head>
+<body data-mood="editorial">
+
+  <header id="nav-mount"></header>
+
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="crumb">
+        <a href="index.html">Home</a><span class="sep">/</span><a href="services.html">Services</a><span class="sep">/</span><span>Media &amp; Broadcast</span>
+      </div>
+      <div class="eyebrow">Media &amp; Broadcast</div>
+      <h1>Broadcast networks that <span class="accent">never drop a frame.</span></h1>
+      <p class="lead">We design, deploy and migrate the IP fabrics that broadcasters, post-production houses, sports venues and live-event producers rely on to stay on air. ST 2110, PTP timing, multicast at scale, and the kind of cutover engineering that lets you walk into Monday morning with no one in the control room having noticed a thing.</p>
+      <div class="page-hero-actions">
+        <a href="contact.html?ref=broadcast" class="btn btn-primary">Talk to a broadcast engineer <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="case-studies.html#case-5" class="btn btn-ghost">Read the broadcaster case study</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why now / intro -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">SDI to IP - the long migration</div>
+          <h2>The cabling cycle is over. The software-defined facility is the new floor.</h2>
+        </div>
+        <p>For thirty years broadcasters built around SDI: fixed-rate, fixed-resolution, point-to-point. Every move to a higher format - SD → HD → 3G → 12G - meant re-cabling the plant and replacing the routing matrix. ST 2110 ends that cycle. One IP fabric carries every format the standards body has shipped, plus the ones they haven't shipped yet. The economic case is straightforward; the engineering case is where most facilities trip.</p>
+      </div>
+
+      <p style="max-width: 760px; margin-top: 24px; line-height: 1.7;">An IP fabric for broadcast is not a data-centre fabric with media on top. PTP timing must hold sub-microsecond accuracy hop by hop. Multicast has to scale to thousands of essence streams without storming. QoS has to deliver predictable latency for talkback and intercom that engineers will trust during a live event. NMOS has to discover and switch sources fast enough that a director doesn't have to think about it. Get any one of these wrong and the facility goes dark on the worst possible night. We've spent the last decade getting them right.</p>
+    </div>
+  </section>
+
+  <!-- What we deliver -->
+  <section class="section" style="padding-top: 20px;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">What we deliver</div>
+          <h2>End-to-end broadcast IT, from RFP to as-built.</h2>
+        </div>
+        <p>Every engagement is custom, but the deliverables we own are consistent.</p>
+      </div>
+
+      <div class="services-grid services-grid-6">
+
+        <div class="service-card span-3">
+          <div class="service-num">/ 01</div>
+          <h3>ST 2110 IP fabric design &amp; deployment</h3>
+          <p>Non-blocking Spine-Leaf fabrics sized for your essence count, future format roadmap and disaster scenarios. We design for ST 2110-20 (video), -30 (audio), -40 (ancillary) and ST 2022-7 hitless redundancy out of the gate - not bolted on later.</p>
+        </div>
+
+        <div class="service-card span-3">
+          <div class="service-num">/ 02</div>
+          <h3>SDI to IP migration &amp; phased cutovers</h3>
+          <p>Hybrid SDI / IP plans that let you keep producing while the fabric goes live underneath. Gateway sizing, control-room-by-control-room cutover sequencing, validation gates, and on-air rollback procedures rehearsed before the first frame moves.</p>
+        </div>
+
+        <div class="service-card span-3">
+          <div class="service-num">/ 03</div>
+          <h3>PTP (IEEE 1588) precision timing</h3>
+          <p>Redundant grandmasters with GPS / Rubidium discipline, SMPTE ST 2059-2 profiles, boundary clocks at every leaf, and end-to-end offset monitoring. Designed so a grandmaster failure doesn't put a single frame at risk.</p>
+        </div>
+
+        <div class="service-card span-3">
+          <div class="service-num">/ 04</div>
+          <h3>Multicast routing &amp; PIM at broadcast scale</h3>
+          <p>PIM-SSM design that scales to thousands of essences without storms or RPF surprises. Multicast group allocation, IGMP snooping tuning per leaf, and source-specific subscriptions sized for the real production load - not the lab.</p>
+        </div>
+
+        <div class="service-card span-3">
+          <div class="service-num">/ 05</div>
+          <h3>NMOS discovery &amp; connection management</h3>
+          <p>NMOS IS-04 (registration / discovery) and IS-05 (connection management) implementations that work across mixed-vendor gear. We've integrated Lawo, Imagine, Grass Valley, Riedel and EVS endpoints with broker-aware routing in production.</p>
+        </div>
+
+        <div class="service-card span-3">
+          <div class="service-num">/ 06</div>
+          <h3>Converged LAN/WAN for production</h3>
+          <p>QoS-engineered transport for talkback, intercom, file transfer, REMI and remote-production flows over the same physical infrastructure. Real-time and bursty file traffic do not coexist by accident - they coexist by design.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Case study spotlight -->
+  <section class="section" style="background: var(--bg-elev); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Selected work</div>
+          <h2>A national broadcaster. 25% long-term CapEx reduction. Zero on-air interruption.</h2>
+        </div>
+      </div>
+
+      <div style="max-width: 820px; margin-top: 24px; line-height: 1.7;">
+        <p>One of North America's national broadcasters needed to retire fixed-capacity SDI infrastructure and replace it with a software-defined fabric that could carry HD today and scale to 4K / 8K without another forklift in five years. Two prior integrators had stalled the project. They engaged Aspire IT Systems to architect, build and migrate.</p>
+
+        <p style="margin-top: 16px;">We delivered a non-blocking Arista R-Series Spine-Leaf fabric with ST 2022-7 hitless redundancy on every essence path, PTP timing with diverse grandmasters and CloudVision for fabric-wide telemetry. The transition was phased control-room by control-room with rehearsed rollback at every step. The broadcaster operates continuously; not a single scheduled programme was disrupted by the migration.</p>
+
+        <p style="margin-top: 16px;">The outcomes: <strong>25% reduction in projected ten-year CapEx</strong> versus an SDI refresh, REMI-capable workflows enabled on day one, broadcast-grade reliability validated through six months of post-cutover operations, and as-built documentation that the in-house team owns and operates today.</p>
+
+        <div style="margin-top: 24px;">
+          <a href="case-studies.html#case-5" class="btn btn-primary">Read the full case study <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology stack -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Technology stack</div>
+          <h2>Vendor-agnostic by design. Certified across the broadcast IT stack.</h2>
+        </div>
+        <p>We recommend the platform that fits your operational team and your facility's scale, not the vendor with the best partner margin this quarter.</p>
+      </div>
+
+      <div class="expertise-grid">
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>IP Fabric</h3><span class="badge">Core</span></div>
+          <div class="tech-chips">
+            <span class="tech-chip">Arista R-Series</span>
+            <span class="tech-chip">Arista CloudVision</span>
+            <span class="tech-chip">Cisco Nexus 9000</span>
+            <span class="tech-chip">Cisco IPFM (DCNM)</span>
+            <span class="tech-chip">Juniper</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Standards</h3><span class="badge">Core</span></div>
+          <div class="tech-chips">
+            <span class="tech-chip">ST 2110-10/-20/-21/-22/-30/-40</span>
+            <span class="tech-chip">ST 2022-7</span>
+            <span class="tech-chip">ST 2059-2 (PTP profile)</span>
+            <span class="tech-chip">IEEE 1588-2008/-2019</span>
+            <span class="tech-chip">NMOS IS-04 / IS-05 / IS-08</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Routing &amp; Control</h3><span class="badge">Specialty</span></div>
+          <div class="tech-chips">
+            <span class="tech-chip">PIM-SSM Multicast</span>
+            <span class="tech-chip">IGMP Snooping</span>
+            <span class="tech-chip">EVPN-VXLAN</span>
+            <span class="tech-chip">BGP Route Reflectors</span>
+            <span class="tech-chip">QoS / DSCP Engineering</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Broadcast Endpoints</h3><span class="badge">Specialty</span></div>
+          <div class="tech-chips">
+            <span class="tech-chip">Lawo</span>
+            <span class="tech-chip">Imagine Communications</span>
+            <span class="tech-chip">Grass Valley</span>
+            <span class="tech-chip">Riedel</span>
+            <span class="tech-chip">EVS</span>
+            <span class="tech-chip">Sony</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Timing &amp; Reference</h3><span class="badge">Core</span></div>
+          <div class="tech-chips">
+            <span class="tech-chip">Meinberg Grandmasters</span>
+            <span class="tech-chip">Tektronix SPG</span>
+            <span class="tech-chip">GPS &amp; Rubidium Discipline</span>
+            <span class="tech-chip">Boundary Clocks</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>VoIP &amp; Talkback</h3><span class="badge">Specialty</span></div>
+          <div class="tech-chips">
+            <span class="tech-chip">Riedel Artist</span>
+            <span class="tech-chip">RTS ODIN / OMNEO</span>
+            <span class="tech-chip">Clear-Com Eclipse</span>
+            <span class="tech-chip">AES67</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process / methodology -->
+  <section class="section" style="padding-top: 20px;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">How we work</div>
+          <h2>A broadcast migration is a series of irreversible cutovers. We engineer for the day it goes live, not the day it ships.</h2>
+        </div>
+      </div>
+
+      <div class="services-grid services-grid-6" style="margin-top: 28px;">
+
+        <div class="service-card span-2">
+          <div class="service-num">/ Phase 01</div>
+          <h3>Discovery &amp; capacity modelling</h3>
+          <p>Essence count, format roadmap, REMI plans, redundancy requirements, operational staffing. The fabric is sized for what you'll actually do - not a generic reference design.</p>
+        </div>
+
+        <div class="service-card span-2">
+          <div class="service-num">/ Phase 02</div>
+          <h3>Architecture &amp; vendor selection</h3>
+          <p>Spine-Leaf topology, PTP architecture, NMOS broker placement, multicast scheme, monitoring stack. Vendor choice falls out of the operational and scale requirements - not the other way round.</p>
+        </div>
+
+        <div class="service-card span-2">
+          <div class="service-num">/ Phase 03</div>
+          <h3>Lab build &amp; validation</h3>
+          <p>Full lab buildout with PTP failover testing, multicast load tests, NMOS interop validation across every endpoint vendor in scope. Cutover plans are rehearsed in the lab before they touch the plant.</p>
+        </div>
+
+        <div class="service-card span-3">
+          <div class="service-num">/ Phase 04</div>
+          <h3>Phased on-air cutover</h3>
+          <p>Control-room-by-control-room migration with rehearsed rollback gates at every step. Hybrid SDI / IP runs in parallel while the new fabric is validated under real production load. Nothing migrates until it has passed live-traffic validation.</p>
+        </div>
+
+        <div class="service-card span-3">
+          <div class="service-num">/ Phase 05</div>
+          <h3>Handover, documentation &amp; hypercare</h3>
+          <p>Full as-built documentation, runbooks, monitoring dashboards and a 30/60/90-day hypercare engagement with your operations team. You own the fabric end-to-end before we leave the building.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Who this is for -->
+  <section class="section" style="padding-top: 20px;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Who we work with</div>
+          <h2>Built for the facilities where downtime makes the news.</h2>
+        </div>
+      </div>
+
+      <div class="expertise-grid" style="margin-top: 24px;">
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>National &amp; regional broadcasters</h3></div>
+          <p style="font-size: 14px; color: var(--text-mut); margin-top: 8px;">SDI plant refreshes, control-room IP migrations, REMI enablement, multi-site fabric design for distributed production.</p>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Post-production houses</h3></div>
+          <p style="font-size: 14px; color: var(--text-mut); margin-top: 8px;">High-throughput essence transport for editorial, colour, finishing and VFX. ST 2110 for review rooms; ST 2022-6 / NDI for collaborative workflows.</p>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Sports venues &amp; OB trucks</h3></div>
+          <p style="font-size: 14px; color: var(--text-mut); margin-top: 8px;">Stadium IPTV, in-venue production fabrics, OB truck-to-broadcast-centre connectivity, low-latency multi-site contribution.</p>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Live-event producers</h3></div>
+          <p style="font-size: 14px; color: var(--text-mut); margin-top: 8px;">Event-scale IP fabrics, ad-hoc PTP and multicast deployments, NMOS-aware routing for fast source switching, end-of-event teardown plans.</p>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Government &amp; defence media</h3></div>
+          <p style="font-size: 14px; color: var(--text-mut); margin-top: 8px;">Secure broadcast and TV-over-IP for legislative chambers, military media operations and emergency-services video distribution.</p>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Houses of worship at scale</h3></div>
+          <p style="font-size: 14px; color: var(--text-mut); margin-top: 8px;">Multi-campus broadcast over IP, simulcast-ready fabrics, cost-conscious ST 2110 deployments that don't compromise on PTP or redundancy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Frequently asked</div>
+          <h2>The questions broadcast engineers actually ask us first.</h2>
+        </div>
+      </div>
+
+      <div style="max-width: 820px; margin-top: 24px;">
+
+        <details style="border-top: 1px solid var(--border); padding: 20px 0;">
+          <summary style="cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--text);">What is ST 2110, and why are we moving from SDI to IP?</summary>
+          <p style="margin-top: 14px; line-height: 1.7;">ST 2110 is SMPTE's family of standards (ST 2110-10, -20, -21, -22, -30, -40) for transporting uncompressed video, audio and ancillary data over managed IP networks. Broadcasters migrate from SDI because IP fabrics are software-defined and resolution-agnostic - the same fabric carries HD, 4K and 8K, which removes the per-resolution cabling and matrix replacement cycle. The result is lower long-term CapEx, REMI-capable workflows and a path to cloud production.</p>
+        </details>
+
+        <details style="border-top: 1px solid var(--border); padding: 20px 0;">
+          <summary style="cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--text);">How long does an SDI to IP migration typically take?</summary>
+          <p style="margin-top: 14px; line-height: 1.7;">A facility migration usually runs 6 to 18 months end-to-end depending on facility size, the number of production rooms in scope and whether the migration is greenfield or phased over an active SDI plant. We design phased cutover plans so on-air operations are never interrupted during the transition.</p>
+        </details>
+
+        <details style="border-top: 1px solid var(--border); padding: 20px 0;">
+          <summary style="cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--text);">Do we have to replace all our SDI gear at once?</summary>
+          <p style="margin-top: 14px; line-height: 1.7;">No. Most real-world deployments are hybrid SDI / IP for years. Gateways translate SDI to ST 2110 (and back) so legacy cameras, routers and production switchers continue to operate alongside the new IP fabric. The migration is staged by control room, by show or by facility, on a timeline that fits your contract and equipment lifecycle.</p>
+        </details>
+
+        <details style="border-top: 1px solid var(--border); padding: 20px 0;">
+          <summary style="cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--text);">Which IP fabric vendors do you deploy for broadcast?</summary>
+          <p style="margin-top: 14px; line-height: 1.7;">Primarily Arista (R-Series + CloudVision) for non-blocking fabrics, and Cisco IPFM (Nexus 9000 + DCNM) for Cisco-aligned operations. We're vendor-agnostic - we recommend the platform that fits your operational team's skills, your scale requirements and your existing tooling, not a vendor we have margin on.</p>
+        </details>
+
+        <details style="border-top: 1px solid var(--border); padding: 20px 0;">
+          <summary style="cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--text);">Why is PTP timing critical and how do you design for it?</summary>
+          <p style="margin-top: 14px; line-height: 1.7;">Without sub-microsecond timing accuracy, audio and video streams drift apart and frame edges lose alignment - the IP equivalent of a black flash. We deploy PTP (IEEE 1588-2008 / -2019) with boundary clocks at every leaf, redundant grandmasters with GPS or Rubidium discipline, and SMPTE ST 2059-2 profiles. Monitoring includes hop-by-hop offset and timing failover validation.</p>
+        </details>
+
+        <details style="border-top: 1px solid var(--border); padding: 20px 0 30px;">
+          <summary style="cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--text);">Can you rescue a broadcast migration that's gone off the rails?</summary>
+          <p style="margin-top: 14px; line-height: 1.7;">Yes. About a third of our broadcast engagements start as rescue work - a system integrator's design that isn't passing PTP validation, multicast that storms under load, or an NMOS layer that won't reliably switch sources. We come in, audit, identify root cause and either correct the existing build or re-architect the parts that need it. We've never failed a broadcast engagement.</p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="eyebrow" style="margin-bottom:20px;">Talk to a broadcast engineer</div>
+        <h2 class="cta-quote">Bring us in <span class="accent">before</span> the cutover. Or after the wheels come off - either way.</h2>
+        <p>30-minute call with someone who's actually built one of these. Tell us what you're planning or what just broke, and we'll tell you honestly whether we can help.</p>
+        <div class="cta-actions">
+          <a href="contact.html?ref=broadcast" class="btn btn-primary">Send an enquiry <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="assessment.html" class="btn btn-ghost">Take the broadcast assessment</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-mount"></div>
+
+  <script src="partials.js?v=m4"></script>
+  <script src="app.js?v=m2"></script>
+  <script src="chat.js?v=m2"></script>
+</body>
+</html>

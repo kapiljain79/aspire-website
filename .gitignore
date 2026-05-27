@@ -1,0 +1,28 @@
+# =============================================================
+# Aspire IT Systems - files that must NEVER be pushed to git.
+# =============================================================
+
+# Server-only secrets
+mail-config.php
+
+# Customer data + auth tokens captured server-side
+leads/leads.jsonl
+leads/smtp.log
+leads/graph.log
+leads/.graph-token
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.log
+
+# Backup files
+*.bak
+*.orig
+*.tmp

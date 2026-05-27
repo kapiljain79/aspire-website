@@ -1,0 +1,34 @@
+# =============================================================
+# Aspire IT Systems - robots.txt
+# Site:    https://www.aspireitsystems.io/
+# Updated: 2026-05-22
+# =============================================================
+# This file tells crawlers what they may and may not fetch.
+# The entire public site is open to all crawlers (Google, Bing,
+# DuckDuckGo, etc.). Form handlers, lead storage, server libs
+# and config files are off-limits.
+# =============================================================
+
+User-agent: *
+Allow: /
+
+# ---------- Server-side handlers (POST-only, no SEO value) ----------
+Disallow: /submit-contact.php
+Disallow: /submit-assessment.php
+Disallow: /chat-proxy.php
+
+# ---------- Private config + libraries ----------
+# (Also HTTP-blocked by .htaccess and Hostinger filesystem
+#  permissions - listed here as defence in depth.)
+Disallow: /mail-config.php
+Disallow: /mail-config.example.php
+Disallow: /lib/
+Disallow: /leads/
+
+# ---------- Asset cache-busted duplicates ----------
+# Saves crawl budget on identical *.css / *.js fetched under
+# different ?v= cache stamps.
+Disallow: /*?v=
+
+# ---------- Sitemap ----------
+Sitemap: https://www.aspireitsystems.io/sitemap.xml

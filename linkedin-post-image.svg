@@ -1,0 +1,135 @@
+<svg viewBox="0 0 1200 627" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aspire IT Systems - 25% CapEx reduction case study">
+  <title>Aspire IT Systems Media and Broadcast Systems Integrator</title>
+  <desc>LinkedIn post image highlighting a 25% CapEx reduction delivered on an ST 2110 broadcast IP migration.</desc>
+
+  <defs>
+    <pattern id="bgGrid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#2BB3B3" stroke-width="0.6" opacity="0.10"/>
+    </pattern>
+    <linearGradient id="topAccent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2BB3B3"/>
+      <stop offset="1" stop-color="#3FCFCF"/>
+    </linearGradient>
+    <linearGradient id="statGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3FCFCF"/>
+      <stop offset="1" stop-color="#2BB3B3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="627" fill="#0B1A2E"/>
+  <rect width="1200" height="627" fill="url(#bgGrid)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="url(#topAccent)"/>
+
+  <!-- Top brand row -->
+  <text x="60" y="58" fill="#FFFFFF" font-family="'Space Grotesk', system-ui, sans-serif" font-size="17" font-weight="600" letter-spacing="2.2">
+    ASPIRE IT SYSTEMS
+  </text>
+  <text x="1140" y="58" fill="#3FCFCF" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="3" text-anchor="end">
+    MEDIA &amp; BROADCAST
+  </text>
+  <circle cx="1158" cy="54" r="3" fill="#3FCFCF"/>
+
+  <!-- Case study eyebrow -->
+  <text x="60" y="125" fill="#A0BBD3" font-family="'JetBrains Mono', monospace" font-size="12" letter-spacing="3.5">
+    CASE STUDY · NATIONAL BROADCASTER · ST 2110 MIGRATION
+  </text>
+
+  <!-- Hero stat block (left) -->
+  <text x="60" y="305" fill="url(#statGradient)" font-family="'Fraunces', Georgia, serif" font-size="200" font-weight="600" letter-spacing="-7">
+    25%
+  </text>
+  <text x="60" y="365" fill="#FFFFFF" font-family="'Space Grotesk', system-ui, sans-serif" font-size="30" font-weight="400" letter-spacing="-0.4">
+    long-term CapEx reduction
+  </text>
+
+  <!-- Spine/Leaf fabric diagram (right) -->
+  <g transform="translate(740, 145)">
+    <text x="0" y="0" fill="#A0BBD3" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2.5">
+      ARISTA IP FABRIC · ST 2022-7
+    </text>
+
+    <!-- Spine nodes -->
+    <rect x="80" y="40" width="60" height="22" rx="3" fill="none" stroke="#3FCFCF" stroke-width="1.4"/>
+    <text x="110" y="55" fill="#3FCFCF" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">SPINE</text>
+    <rect x="180" y="40" width="60" height="22" rx="3" fill="none" stroke="#3FCFCF" stroke-width="1.4"/>
+    <text x="210" y="55" fill="#3FCFCF" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">SPINE</text>
+    <rect x="280" y="40" width="60" height="22" rx="3" fill="none" stroke="#3FCFCF" stroke-width="1.4"/>
+    <text x="310" y="55" fill="#3FCFCF" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">SPINE</text>
+
+    <!-- Leaf nodes -->
+    <rect x="30" y="140" width="60" height="22" rx="3" fill="#2BB3B3" opacity="0.15" stroke="#2BB3B3" stroke-width="1"/>
+    <text x="60" y="155" fill="#2BB3B3" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">LEAF</text>
+    <rect x="110" y="140" width="60" height="22" rx="3" fill="#2BB3B3" opacity="0.15" stroke="#2BB3B3" stroke-width="1"/>
+    <text x="140" y="155" fill="#2BB3B3" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">LEAF</text>
+    <rect x="190" y="140" width="60" height="22" rx="3" fill="#2BB3B3" opacity="0.15" stroke="#2BB3B3" stroke-width="1"/>
+    <text x="220" y="155" fill="#2BB3B3" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">LEAF</text>
+    <rect x="270" y="140" width="60" height="22" rx="3" fill="#2BB3B3" opacity="0.15" stroke="#2BB3B3" stroke-width="1"/>
+    <text x="300" y="155" fill="#2BB3B3" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">LEAF</text>
+    <rect x="350" y="140" width="60" height="22" rx="3" fill="#2BB3B3" opacity="0.15" stroke="#2BB3B3" stroke-width="1"/>
+    <text x="380" y="155" fill="#2BB3B3" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">LEAF</text>
+
+    <!-- Fabric connections (every spine to every leaf) -->
+    <g stroke="#2BB3B3" stroke-width="0.6" opacity="0.55" fill="none">
+      <line x1="110" y1="62" x2="60" y2="140"/>
+      <line x1="110" y1="62" x2="140" y2="140"/>
+      <line x1="110" y1="62" x2="220" y2="140"/>
+      <line x1="110" y1="62" x2="300" y2="140"/>
+      <line x1="110" y1="62" x2="380" y2="140"/>
+      <line x1="210" y1="62" x2="60" y2="140"/>
+      <line x1="210" y1="62" x2="140" y2="140"/>
+      <line x1="210" y1="62" x2="220" y2="140"/>
+      <line x1="210" y1="62" x2="300" y2="140"/>
+      <line x1="210" y1="62" x2="380" y2="140"/>
+      <line x1="310" y1="62" x2="60" y2="140"/>
+      <line x1="310" y1="62" x2="140" y2="140"/>
+      <line x1="310" y1="62" x2="220" y2="140"/>
+      <line x1="310" y1="62" x2="300" y2="140"/>
+      <line x1="310" y1="62" x2="380" y2="140"/>
+    </g>
+
+    <!-- Bottom signal flow labels -->
+    <text x="220" y="195" fill="#A0BBD3" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="2" text-anchor="middle">
+      ST 2110 · PTP · MULTICAST · NMOS
+    </text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="60" y1="425" x2="1140" y2="425" stroke="#2BB3B3" stroke-width="0.6" opacity="0.30"/>
+
+  <!-- Three supporting stats row -->
+  <text x="60" y="468" fill="#A0BBD3" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2.5">
+    DELIVERY
+  </text>
+  <text x="60" y="503" fill="#FFFFFF" font-family="'Space Grotesk', system-ui, sans-serif" font-size="30" font-weight="500" letter-spacing="-0.3">
+    6 months
+  </text>
+
+  <text x="430" y="468" fill="#A0BBD3" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2.5">
+    ON-AIR INTERRUPTION
+  </text>
+  <text x="430" y="503" fill="#FFFFFF" font-family="'Space Grotesk', system-ui, sans-serif" font-size="30" font-weight="500" letter-spacing="-0.3">
+    Zero
+  </text>
+
+  <text x="800" y="468" fill="#A0BBD3" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2.5">
+    PRIOR INTEGRATORS
+  </text>
+  <text x="800" y="503" fill="#FFFFFF" font-family="'Space Grotesk', system-ui, sans-serif" font-size="30" font-weight="500" letter-spacing="-0.3">
+    2 stalled
+  </text>
+
+  <!-- Tagline -->
+  <text x="60" y="568" fill="#3FCFCF" font-family="'Fraunces', Georgia, serif" font-size="32" font-weight="500" letter-spacing="-0.5" font-style="italic">
+    What a full systems integrator delivers.
+  </text>
+
+  <!-- URL footer -->
+  <text x="60" y="600" fill="#A0BBD3" font-family="'JetBrains Mono', monospace" font-size="12" letter-spacing="1.2">
+    aspireitsystems.io/media-broadcast
+  </text>
+
+  <!-- Bottom right accent corner -->
+  <rect x="1100" y="588" width="40" height="3" fill="#3FCFCF"/>
+  <rect x="1136" y="584" width="4" height="11" fill="#3FCFCF"/>
+</svg>

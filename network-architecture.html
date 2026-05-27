@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Spine/Leaf &amp; EVPN VXLAN Consulting | Aspire IT Systems</title>
+  <meta name="description" content="Enterprise network design and data center modernization across North America. Spine/Leaf fabrics, EVPN VXLAN, zero-trust segmentation, campus redesign. Four data centers migrated with zero production downtime." />
+  <link rel="canonical" href="https://www.aspireitsystems.io/network-architecture.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Aspire IT Systems" />
+  <meta property="og:url" content="https://www.aspireitsystems.io/network-architecture.html" />
+  <meta property="og:title" content="Enterprise Network &amp; Data Center Architecture | Aspire IT Systems" />
+  <meta property="og:description" content="Spine/Leaf data center fabrics, EVPN VXLAN, zero-trust segmentation. Four data centers migrated with zero production downtime." />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Enterprise Network &amp; Data Center Architecture | Aspire IT Systems" />
+  <meta name="twitter:description" content="Spine/Leaf, EVPN VXLAN, zero-trust. Four data centers migrated with zero downtime." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Enterprise Network and Data Center Architecture",
+    "provider": {
+      "@type": "Organization",
+      "name": "Aspire IT Systems",
+      "url": "https://www.aspireitsystems.io/",
+      "areaServed": { "@type": "Place", "name": "North America" }
+    },
+    "name": "Network &amp; Security Architecture - Spine/Leaf, EVPN VXLAN, Zero Trust",
+    "description": "Enterprise network and data center design, deployment and migration. Spine/Leaf fabrics, EVPN VXLAN overlays, zero-trust segmentation, campus and multi-site WAN redesign. Vendor-agnostic across Cisco, Arista, Juniper and Aruba.",
+    "url": "https://www.aspireitsystems.io/network-architecture.html",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Network Architecture Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Spine/Leaf data center design and migration" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "EVPN VXLAN deployment" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cisco ACI deployment" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Zero-trust network segmentation" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Campus network redesign" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Multi-site WAN architecture" } }
+      ]
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When does Spine/Leaf make sense versus a traditional three-tier design?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Spine/Leaf is the right choice when east-west traffic dominates (any modern data center with virtualization, microservices or AI workloads), when you need predictable any-to-any latency, or when you're planning for 10×+ growth without re-cabling. Three-tier still works for legacy north-south workloads, small footprints under 200 ports, or environments not refreshing for another five years."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do we need EVPN VXLAN, or just VXLAN?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "EVPN is the control plane that makes VXLAN viable at scale. Without EVPN, you're back to flood-and-learn - operationally painful past about 20 leaf switches. We deploy EVPN-VXLAN by default for any new Spine/Leaf and recommend retrofitting legacy VXLAN-without-EVPN deployments unless they're already small and stable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a data center migration really be done with zero downtime?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes - and we've done it. The trick is phased workload migration with parallel run periods, not big-bang cutovers. We design the new fabric, build connectivity between old and new, migrate by workload group with rollback gates, and decommission only after the new platform has run under real load. We've delivered four enterprise data center migrations to Spine/Leaf with zero production downtime."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should we run Cisco ACI, NDFC or open EVPN-VXLAN?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ACI is the most operationally complete option if you're committed to Cisco and willing to operate Cisco's policy abstraction. NDFC is the right answer for Cisco-aligned teams who want VXLAN without ACI's complexity. Open EVPN-VXLAN on Arista or Juniper is best if vendor neutrality matters or if your team is comfortable with config-as-code automation. We design and operate all three."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What about microsegmentation - do we need it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Microsegmentation is the right answer for regulated industries (PCI, HIPAA, NIST), for environments with crown-jewel workloads, and for organisations that have suffered a ransomware incident. For everyone else, VLAN + ACL or ISE-enforced segmentation is often sufficient. We help you make the tradeoff between security posture, operational overhead and cost honestly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you handle campus redesigns at scale?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Campus engagements typically combine an EVPN-VXLAN core (or Cisco SD-Access fabric) with refreshed access layer, WPA3-Enterprise or 802.1X, NAC enforcement, and converged wired/wireless policy. Multi-site campus rollouts phase by location, with each site's design templated from the master architecture for consistency and operational simplicity."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.aspireitsystems.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.aspireitsystems.io/services.html" },
+      { "@type": "ListItem", "position": 3, "name": "Network & Security Architecture" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=m5" />
+</head>
+<body data-mood="editorial">
+
+  <header id="nav-mount"></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="crumb">
+        <a href="index.html">Home</a><span class="sep">/</span><a href="services.html">Services</a><span class="sep">/</span><span>Network &amp; Security Architecture</span>
+      </div>
+      <div class="eyebrow">Network &amp; Security Architecture</div>
+      <h1>Networks that <span class="accent">perform under load</span>. And hold up under attack.</h1>
+      <p class="lead">Spine/Leaf data center fabrics, EVPN-VXLAN overlays, zero-trust segmentation, campus refreshes and multi-site WAN - architected for the workloads you have today and the scale you'll need in five years. Four data centers migrated with zero production downtime. The fabric that didn't make the news is the one we built.</p>
+      <div class="page-hero-actions">
+        <a href="contact.html?ref=architecture" class="btn btn-primary">Talk to a network architect <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="case-studies.html#case-1" class="btn btn-ghost">Read the 4-DC migration story</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Why architecture matters now</div>
+          <h2>Cabling decisions made today still cost you in 2035.</h2>
+        </div>
+        <p>The network architectures most enterprises run were designed for a workload mix that no longer exists. Three-tier hierarchies built for client-server traffic now carry east-west AI inference and microservice meshes that hammer the spine. Flat VLAN-everywhere campuses now face zero-trust mandates they were never designed to enforce. The cost of running the wrong architecture isn't dramatic - it's small, daily friction that compounds for a decade.</p>
+      </div>
+      <p style="max-width: 760px; margin-top: 24px; line-height: 1.7;">A modern enterprise network is a Spine/Leaf core with an EVPN-VXLAN overlay, identity-aware segmentation enforced at the access layer, and a converged policy plane that follows the workload across data center, campus and cloud. We architect to that target and migrate to it in phases - never with a big-bang cutover.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 20px;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">What we deliver</div>
+          <h2>From rack diagrams to running fabric.</h2>
+        </div>
+      </div>
+
+      <div class="services-grid services-grid-6">
+        <div class="service-card span-3">
+          <div class="service-num">/ 01</div>
+          <h3>Spine/Leaf data center design</h3>
+          <p>Non-blocking Spine/Leaf fabrics sized to your east-west workload, growth trajectory and failure-domain requirements. We design for the platform you'll actually operate - not a generic reference architecture lifted from a vendor whitepaper.</p>
+        </div>
+        <div class="service-card span-3">
+          <div class="service-num">/ 02</div>
+          <h3>EVPN-VXLAN deployment</h3>
+          <p>EVPN-VXLAN control plane with BGP route reflectors, ingress / egress replication strategies, multi-tenancy by VRF, and integration with existing L2/L3 infrastructure. Designed so day-two operations are as simple as day-one cabling.</p>
+        </div>
+        <div class="service-card span-3">
+          <div class="service-num">/ 03</div>
+          <h3>Cisco ACI &amp; NDFC operations</h3>
+          <p>Greenfield ACI fabrics, migrations to NDFC, application network profile design, contract architecture, and integration with VMware and ServiceNow. Plus rescue work on ACI deployments that aren't behaving as advertised.</p>
+        </div>
+        <div class="service-card span-3">
+          <div class="service-num">/ 04</div>
+          <h3>Zero-trust segmentation</h3>
+          <p>Identity-aware microsegmentation using ISE, Aruba ClearPass, Cisco TrustSec or NSX. Workload-to-workload policy, lateral-movement containment and compliance-grade evidence for PCI, HIPAA and NIST.</p>
+        </div>
+        <div class="service-card span-3">
+          <div class="service-num">/ 05</div>
+          <h3>Campus network redesign</h3>
+          <p>EVPN-VXLAN campus cores, Cisco SD-Access, converged wired/wireless policy, multi-site templates and access-layer refresh. 802.1X, WPA3-Enterprise and NAC integration baked in from design phase.</p>
+        </div>
+        <div class="service-card span-3">
+          <div class="service-num">/ 06</div>
+          <h3>Multi-site WAN architecture</h3>
+          <p>SD-WAN underlay design, MPLS displacement plans, ExpressRoute and Direct Connect integration, dual-ISP hub-and-spoke or full-mesh topologies. Resilient routing for organisations that can't afford a regional outage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--bg-elev); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Selected work</div>
+          <h2>Four enterprise data centers migrated to Spine/Leaf. Zero production downtime.</h2>
+        </div>
+      </div>
+      <div style="max-width: 820px; margin-top: 24px; line-height: 1.7;">
+        <p>Four enterprises - a Tier-1 casino operator, a regional medical group, a wholesale ISP and an oil-and-gas major - separately engaged us to retire end-of-life three-tier data centers and replace them with modern Spine/Leaf fabrics. Each environment had irreplaceable workloads, regulatory exposure and zero tolerance for downtime.</p>
+        <p style="margin-top: 16px;">We architected non-blocking Spine/Leaf fabrics - three on Cisco ACI, one on Arista with EVPN-VXLAN - designed phased workload migration with rollback gates at every step, and ran the old and new fabrics in parallel until the new platform had operated under real production load for 30 days. <strong>Every one of the four migrations delivered with zero production downtime.</strong> As-built documentation handed over at the end is what those internal teams now run from.</p>
+        <div style="margin-top: 24px;">
+          <a href="case-studies.html#case-1" class="btn btn-primary">Read the full case study <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Technology stack</div>
+          <h2>Deep across Cisco, Arista, Juniper and Aruba.</h2>
+        </div>
+        <p>Multi-vendor by design. We recommend the platform that fits your operational team's skills and your scale requirements - not the vendor we have margin on.</p>
+      </div>
+
+      <div class="expertise-grid">
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Data Center Fabric</h3><span class="badge">Core</span></div>
+          <div class="tech-chips">
+            <span class="tech-chip">Cisco ACI</span>
+            <span class="tech-chip">Cisco NDFC / DCNM</span>
+            <span class="tech-chip">Cisco Nexus 9000</span>
+            <span class="tech-chip">Arista EOS</span>
+            <span class="tech-chip">Arista CloudVision</span>
+            <span class="tech-chip">Juniper Apstra</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Overlays &amp; Control Plane</h3><span class="badge">Core</span></div>
+          <div class="tech-chips">
+            <span class="tech-chip">EVPN-VXLAN</span>
+            <span class="tech-chip">VxLAN flood-and-learn</span>
+            <span class="tech-chip">BGP / iBGP RR</span>
+            <span class="tech-chip">OSPF / IS-IS Underlay</span>
+            <span class="tech-chip">MP-BGP</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Campus &amp; Access</h3><span class="badge">Specialty</span></div>
+          <div class="tech-chips">
+            <span class="tech-chip">Cisco SD-Access</span>
+            <span class="tech-chip">Aruba CX</span>
+            <span class="tech-chip">Cisco Catalyst 9000</span>
+            <span class="tech-chip">Arista Cognitive Campus</span>
+            <span class="tech-chip">Juniper Mist</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Segmentation</h3><span class="badge">Specialty</span></div>
+          <div class="tech-chips">
+            <span class="tech-chip">Cisco ISE TrustSec</span>
+            <span class="tech-chip">VMware NSX</span>
+            <span class="tech-chip">Illumio</span>
+            <span class="tech-chip">Aruba ClearPass</span>
+            <span class="tech-chip">SGT / ACL</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Automation</h3><span class="badge">Specialty</span></div>
+          <div class="tech-chips">
+            <span class="tech-chip">Arista AVD</span>
+            <span class="tech-chip">Ansible</span>
+            <span class="tech-chip">Terraform</span>
+            <span class="tech-chip">Cisco DNAC</span>
+            <span class="tech-chip">Python / NETCONF</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-head"><h3>Monitoring &amp; Telemetry</h3><span class="badge">Core</span></div>
+          <div class="tech-chips">
+            <span class="tech-chip">CloudVision</span>
+            <span class="tech-chip">Cisco DNAC</span>
+            <span class="tech-chip">SolarWinds</span>
+            <span class="tech-chip">PRTG</span>
+            <span class="tech-chip">LogicMonitor</span>
+            <span class="tech-chip">Streaming Telemetry</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 20px;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">How we work</div>
+          <h2>Architecture engagements run in five phases. Every phase has an exit gate.</h2>
+        </div>
+      </div>
+
+      <div class="services-grid services-grid-6" style="margin-top: 28px;">
+        <div class="service-card span-2">
+          <div class="service-num">/ Phase 01</div>
+          <h3>Discovery &amp; current-state audit</h3>
+          <p>Topology mapping, traffic-flow analysis, application dependencies, failure modes, growth forecasts. We document what's actually running - not what was documented years ago.</p>
+        </div>
+        <div class="service-card span-2">
+          <div class="service-num">/ Phase 02</div>
+          <h3>Target architecture &amp; vendor selection</h3>
+          <p>Spine/Leaf sizing, overlay design, segmentation model, multi-site topology. Vendor selection emerges from the requirements - not a pre-decided shortlist.</p>
+        </div>
+        <div class="service-card span-2">
+          <div class="service-num">/ Phase 03</div>
+          <h3>Lab build &amp; validation</h3>
+          <p>Full lab buildout with failure scenarios, automation pipelines, monitoring validation and cutover plan rehearsal. The new platform proves itself before it touches production.</p>
+        </div>
+        <div class="service-card span-3">
+          <div class="service-num">/ Phase 04</div>
+          <h3>Phased production migration</h3>
+          <p>Workload-by-workload migration with parallel run periods, rollback gates and on-call playbooks at each phase. The old fabric stays live until the new fabric has run real load for at least 30 days.</p>
+        </div>
+        <div class="service-card span-3">
+          <div class="service-num">/ Phase 05</div>
+          <h3>Handover, runbooks &amp; hypercare</h3>
+          <p>As-built diagrams, configuration repositories, monitoring dashboards, operational runbooks and 30/60/90 hypercare. Your team operates the platform end-to-end before we step back.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Frequently asked</div>
+          <h2>The questions network architects ask us first.</h2>
+        </div>
+      </div>
+      <div style="max-width: 820px; margin-top: 24px;">
+        <details style="border-top: 1px solid var(--border); padding: 20px 0;">
+          <summary style="cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--text);">When does Spine/Leaf make sense versus a traditional three-tier design?</summary>
+          <p style="margin-top: 14px; line-height: 1.7;">Spine/Leaf is the right choice when east-west traffic dominates (any modern data center with virtualization, microservices or AI workloads), when you need predictable any-to-any latency, or when you're planning for 10×+ growth without re-cabling. Three-tier still works for legacy north-south workloads, small footprints under 200 ports, or environments not refreshing for another five years.</p>
+        </details>
+        <details style="border-top: 1px solid var(--border); padding: 20px 0;">
+          <summary style="cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--text);">Do we need EVPN VXLAN, or just VXLAN?</summary>
+          <p style="margin-top: 14px; line-height: 1.7;">EVPN is the control plane that makes VXLAN viable at scale. Without EVPN, you're back to flood-and-learn - operationally painful past about 20 leaf switches. We deploy EVPN-VXLAN by default for any new Spine/Leaf and recommend retrofitting legacy VXLAN-without-EVPN deployments unless they're already small and stable.</p>
+        </details>
+        <details style="border-top: 1px solid var(--border); padding: 20px 0;">
+          <summary style="cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--text);">Can a data center migration really be done with zero downtime?</summary>
+          <p style="margin-top: 14px; line-height: 1.7;">Yes - and we've done it. The trick is phased workload migration with parallel run periods, not big-bang cutovers. We design the new fabric, build connectivity between old and new, migrate by workload group with rollback gates, and decommission only after the new platform has run under real load. We've delivered four enterprise data center migrations to Spine/Leaf with zero production downtime.</p>
+        </details>
+        <details style="border-top: 1px solid var(--border); padding: 20px 0;">
+          <summary style="cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--text);">Should we run Cisco ACI, NDFC or open EVPN-VXLAN?</summary>
+          <p style="margin-top: 14px; line-height: 1.7;">ACI is the most operationally complete option if you're committed to Cisco and willing to operate Cisco's policy abstraction. NDFC is the right answer for Cisco-aligned teams who want VXLAN without ACI's complexity. Open EVPN-VXLAN on Arista or Juniper is best if vendor neutrality matters or if your team is comfortable with config-as-code automation. We design and operate all three.</p>
+        </details>
+        <details style="border-top: 1px solid var(--border); padding: 20px 0;">
+          <summary style="cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--text);">What about microsegmentation - do we need it?</summary>
+          <p style="margin-top: 14px; line-height: 1.7;">Microsegmentation is the right answer for regulated industries (PCI, HIPAA, NIST), for environments with crown-jewel workloads, and for organisations that have suffered a ransomware incident. For everyone else, VLAN + ACL or ISE-enforced segmentation is often sufficient. We help you make the tradeoff between security posture, operational overhead and cost honestly.</p>
+        </details>
+        <details style="border-top: 1px solid var(--border); padding: 20px 0 30px;">
+          <summary style="cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--text);">How do you handle campus redesigns at scale?</summary>
+          <p style="margin-top: 14px; line-height: 1.7;">Campus engagements typically combine an EVPN-VXLAN core (or Cisco SD-Access fabric) with refreshed access layer, WPA3-Enterprise or 802.1X, NAC enforcement, and converged wired/wireless policy. Multi-site campus rollouts phase by location, with each site's design templated from the master architecture for consistency and operational simplicity.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="eyebrow" style="margin-bottom:20px;">Talk to a network architect</div>
+        <h2 class="cta-quote">Bring us in <span class="accent">before</span> the procurement RFP. Or after.</h2>
+        <p>30-minute call with someone who's actually built one of these. Honest read on whether your target architecture fits your operational reality.</p>
+        <div class="cta-actions">
+          <a href="contact.html?ref=architecture" class="btn btn-primary">Send an enquiry <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="assessment.html" class="btn btn-ghost">Take the readiness assessment</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-mount"></div>
+
+  <script src="partials.js?v=m4"></script>
+  <script src="app.js?v=m2"></script>
+  <script src="chat.js?v=m2"></script>
+</body>
+</html>

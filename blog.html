@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Engineering Insights &amp; Blog | Aspire IT Systems</title>
+  <meta name="description" content="Engineering notes from the field: Spine/Leaf migrations, Cisco ISE deployments, Azure Landing Zones, and lessons from real enterprise infrastructure work." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=m5" />
+</head>
+<body data-mood="editorial">
+
+  <header id="nav-mount"></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="crumb"><a href="index.html">Home</a><span class="sep">/</span><span>Insights</span></div>
+      <div class="eyebrow">Engineering insights</div>
+      <h1>Notes from the field. <span class="accent">Practical, technical.</span></h1>
+      <p class="lead">Hard-won lessons from production deployments - Spine/Leaf migrations, 802.1X rollouts, Azure Landing Zones, broadcast IP fabrics, and the mistakes we see most often.</p>
+    </div>
+  </section>
+
+    <div class="container">
+
+      <!-- Featured post -->
+      <div class="live-feed-head">
+        <div>
+          <div class="eyebrow">Live IT industry pulse</div>
+          <h2>What's happening right now.</h2>
+        </div>
+        <span class="live-feed-status"><span class="live-feed-dot"></span>Live · auto-refresh every 5 min</span>
+      </div>
+      <div id="live-feed-mount"></div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 30px;">
+      <div class="blog-featured">
+        <article class="blog-card-featured">
+          <div class="cover">
+            <span class="cover-label">Featured · Networking</span>
+          </div>
+          <div class="body">
+            <h2>Spine/Leaf migration playbook: 9 lessons from four enterprise data center refreshes.</h2>
+            <p>A field guide based on real production migrations across casino, medical, ISP, and energy clients - including the pre-cutover checks, day-of contingencies, and rollback gates that kept downtime at zero.</p>
+            <div class="meta">May 14, 2026 · 12 min read · Network Architecture</div>
+          </div>
+        </article>
+
+        <article class="blog-card-featured">
+          <div class="cover" style="background: repeating-linear-gradient(135deg, rgba(232,119,34,0.10) 0 6px, transparent 6px 14px), radial-gradient(600px 300px at 30% 30%, rgba(232,119,34,0.18), transparent 70%), linear-gradient(135deg, var(--bg-elev), #6e3a17);">
+            <span class="cover-label">Featured · Security</span>
+          </div>
+          <div class="body">
+            <h2>802.1X across 23 branches without a single user disruption - how we did it.</h2>
+            <p>The phased rollout strategy, ISE policy structure, and Active Directory integration patterns we use for enterprise NAC deployments in regulated environments.</p>
+            <div class="meta">Apr 28, 2026 · 9 min read · Security</div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Grid of posts -->
+      <div class="blog-grid">
+        <a href="#" class="blog-card">
+          <span class="pill">Cloud</span>
+          <h3>Azure Landing Zone CAF checklist for regulated industries</h3>
+          <p>The 22 controls that matter most when deploying Azure for healthcare, finance, and government workloads.</p>
+          <div class="meta">May 3, 2026 <span class="dot"></span> 8 min read</div>
+        </a>
+        <a href="#" class="blog-card">
+          <span class="pill">Data Center</span>
+          <h3>When to pick Cisco ACI vs. NDFC vs. Arista CloudVision</h3>
+          <p>A practical decision matrix based on team skills, scale, multi-tenant needs, and operational model.</p>
+          <div class="meta">Apr 21, 2026 <span class="dot"></span> 11 min read</div>
+        </a>
+        <a href="#" class="blog-card">
+          <span class="pill">VoIP</span>
+          <h3>Migrating 1,200 PBX extensions to Cisco CUCM without breaking 911</h3>
+          <p>Emergency response integration, location services, and the pre-cutover testing matrix we run for healthcare clients.</p>
+          <div class="meta">Apr 12, 2026 <span class="dot"></span> 10 min read</div>
+        </a>
+        <a href="#" class="blog-card">
+          <span class="pill">SD-WAN</span>
+          <h3>Palo Alto Prisma SD-WAN vs. Fortinet Secure SD-WAN - field comparison</h3>
+          <p>Throughput, policy depth, integration patterns, and TCO - based on multi-site rollouts at mid-market clients.</p>
+          <div class="meta">Mar 30, 2026 <span class="dot"></span> 7 min read</div>
+        </a>
+        <a href="#" class="blog-card">
+          <span class="pill">Wireless</span>
+          <h3>Wi-Fi 6E in dense campus environments: design mistakes to avoid</h3>
+          <p>6 GHz adoption, channel planning, AP density, and how to keep your roaming experience under 50 ms.</p>
+          <div class="meta">Mar 18, 2026 <span class="dot"></span> 8 min read</div>
+        </a>
+        <a href="#" class="blog-card">
+          <span class="pill">Broadcast</span>
+          <h3>Building a software-defined IP fabric for 4K/8K media production</h3>
+          <p>Arista R-Series, PTP synchronization, ST 2110/2022-7 redundancy - what we learned rebuilding a national broadcaster.</p>
+          <div class="meta">Mar 4, 2026 <span class="dot"></span> 14 min read</div>
+        </a>
+        <a href="#" class="blog-card">
+          <span class="pill">Zero Trust</span>
+          <h3>From perimeter to zero-trust: the 6-month migration plan</h3>
+          <p>How to phase a zero-trust rollout across identity, device, and network without halting the business.</p>
+          <div class="meta">Feb 22, 2026 <span class="dot"></span> 9 min read</div>
+        </a>
+        <a href="#" class="blog-card">
+          <span class="pill">Managed Services</span>
+          <h3>What "24/7 monitoring" actually means - and what it doesn't</h3>
+          <p>An honest look at managed services SLAs, escalation paths, and what to ask any MSP before you sign.</p>
+          <div class="meta">Feb 10, 2026 <span class="dot"></span> 6 min read</div>
+        </a>
+        <a href="#" class="blog-card">
+          <span class="pill">Compliance</span>
+          <h3>Network segmentation for PCI-DSS without redesigning your VLANs</h3>
+          <p>Microsegmentation patterns that satisfy auditors without forcing a full network rebuild.</p>
+          <div class="meta">Jan 28, 2026 <span class="dot"></span> 10 min read</div>
+        </a>
+      </div>
+
+      <!-- Subscribe CTA -->
+      <div class="blog-cta">
+        <div>
+          <h3>Get new posts in your inbox.</h3>
+          <p>One technical deep-dive per month. No marketing fluff.</p>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Subscribe <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="footer-mount"></div>
+
+  <script src="partials.js?v=m4"></script>
+  <script src="app.js?v=m2"></script>
+  <script src="chat.js?v=m2"></script>
+  <script src="live-feed.js?v=m2"></script>
+</body>
+</html>
