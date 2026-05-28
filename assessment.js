@@ -570,6 +570,14 @@
         }
 
         // Success - reveal the results stage.
+        if (typeof gtag === 'function') {
+          gtag('event', 'assessment_complete', {
+            track: payload.track,
+            track_id: payload.track_id,
+            overall_score: payload.overall,
+            tier: payload.tier
+          });
+        }
         setStage('results');
       } catch (err) {
         console.error('Assessment submit failed', err);

@@ -1,17 +1,101 @@
 # =============================================================
-# 301 redirect: aspireitconsult.com (and www) -> aspireitsystems.io
-# Preserves the request path so /contact -> /contact, /services -> /services, etc.
-# Comment out the RewriteRule block if you stop owning aspireitconsult.com.
+# Aspire IT Systems — .htaccess
+# Site:    https://aspireitsystems.io/
+# Updated: 2026-05-26
+# =============================================================
+
+Options -Indexes
+ServerSignature Off
+
+# =============================================================
+# 1. REWRITE ENGINE — must be first
 # =============================================================
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    # ----- Force HTTPS ----------------------------------------
+    # Redirects all plain HTTP to HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+    # ----- Old domain redirect --------------------------------
+    # aspireitconsult.com (and www) → aspireitsystems.io
+    # Preserves path: /contact → /contact, /services → /services
+    # Comment out if you stop owning aspireitconsult.com
     RewriteCond %{HTTP_HOST} ^(www\.)?aspireitconsult\.com$ [NC]
-    RewriteRule ^(.*)$ https://www.aspireitsystems.io/$1 [R=301,L]
+    RewriteRule ^(.*)$ https://aspireitsystems.io/$1 [R=301,L]
+
+    # ----- WWW → non-WWW canonical ---------------------------
+    # Fixes: "Duplicate without user-selected canonical" in GSC
+    # www.aspireitsystems.io/* → aspireitsystems.io/*
+    RewriteCond %{HTTP_HOST} ^www\.aspireitsystems\.io$ [NC]
+    RewriteRule ^(.*)$ https://aspireitsystems.io/$1 [R=301,L]
+
+    # ----- Strip /index.html ---------------------------------
+    # Redirects /index.html (and any subdir /foo/index.html) → /
+    # so the homepage canonicalises to one URL
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+    RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+
+    # ----- Trailing slash removal ----------------------------
+    # Prevents /services.html/ and /services.html being
+    # treated as two separate pages (duplicate content)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^(.*)/$ /$1 [R=301,L]
+
 </IfModule>
 
-# Protect server-side config and library files from direct HTTP access.
+# =============================================================
+# 2. SECURITY HEADERS
+# =============================================================
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
 
-<FilesMatch "^(mail-config\.php|mail-config\.example\.php)$">
+# =============================================================
+# 3. CACHE CONTROL — static assets
+#    Improves Core Web Vitals / PageSpeed score
+# =============================================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg              "access plus 1 year"
+    ExpiresByType image/jpeg             "access plus 1 year"
+    ExpiresByType image/png              "access plus 1 year"
+    ExpiresByType image/webp             "access plus 1 year"
+    ExpiresByType image/svg+xml          "access plus 1 year"
+    ExpiresByType image/x-icon           "access plus 1 year"
+    ExpiresByType text/css               "access plus 3 months"
+    ExpiresByType application/javascript "access plus 3 months"
+    ExpiresByType font/woff2             "access plus 1 year"
+    ExpiresByType font/woff              "access plus 1 year"
+    ExpiresByType text/html              "access plus 1 hour"
+</IfModule>
+
+# =============================================================
+# 4. GZIP COMPRESSION — reduces page weight, improves speed
+# =============================================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE font/woff2
+    AddOutputFilterByType DEFLATE font/woff
+</IfModule>
+
+# =============================================================
+# 5. PROTECT SENSITIVE FILES
+#    Defence in depth — also blocked in robots.txt
+# =============================================================
+<FilesMatch "^(mail-config\.php|mail-config\.example\.php|\.env|\.git)$">
     <IfModule mod_authz_core.c>
         Require all denied
     </IfModule>
@@ -20,3 +104,8 @@
         Deny from all
     </IfModule>
 </FilesMatch>
+
+# =============================================================
+# 6. CUSTOM ERROR PAGES
+# =============================================================
+ErrorDocument 404 /404.html

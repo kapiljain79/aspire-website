@@ -3,12 +3,70 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact Aspire IT Systems | Free Network Assessment</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4HRMZ3ZGPF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4HRMZ3ZGPF');
+  </script>
+  <title>Contact Aspire IT Systems — Free Infrastructure Assessment</title>
   <meta name="description" content="Most projects start with a 30-minute call. Email info@aspireitsystems.io - we respond within 4 business hours." />
+  <link rel="canonical" href="https://aspireitsystems.io/contact.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=m5" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aspireitsystems.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://aspireitsystems.io/contact.html" }
+        ]
+      },
+      {
+        "@type": "ContactPage",
+        "@id": "https://aspireitsystems.io/contact.html#webpage",
+        "url": "https://aspireitsystems.io/contact.html",
+        "name": "Contact Aspire IT Systems — Free Infrastructure Assessment",
+        "description": "Most projects start with a 30-minute call. Email info@aspireitsystems.io - we respond within 4 business hours.",
+        "isPartOf": { "@id": "https://aspireitsystems.io/#website" },
+        "about": { "@id": "https://aspireitsystems.io/#organization" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://aspireitsystems.io/#organization",
+        "name": "Aspire IT Systems",
+        "url": "https://aspireitsystems.io/",
+        "logo": "https://aspireitsystems.io/logo-mark.png",
+        "email": "info@aspireitsystems.io",
+        "areaServed": ["United States", "Canada"],
+        "sameAs": ["https://www.linkedin.com/company/aspire-it-systems"],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "email": "info@aspireitsystems.io",
+            "areaServed": ["US", "CA"],
+            "availableLanguage": ["English"]
+          },
+          {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "info@aspireitsystems.io",
+            "areaServed": ["US", "CA"],
+            "availableLanguage": ["English"]
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body data-mood="editorial">
 
@@ -169,6 +227,9 @@
             setStatus(SUCCESS_MSG, false);
             cf.reset();
             hideStatus(12000);
+            if (typeof gtag === 'function') {
+              gtag('event', 'contact_form_submit', { form_location: 'contact_page' });
+            }
           } else if (result && result.errors) {
             const firstErr = Object.values(result.errors)[0] || ERROR_MSG;
             setStatus(firstErr, true);

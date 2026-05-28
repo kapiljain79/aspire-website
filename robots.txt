@@ -1,6 +1,6 @@
 # =============================================================
 # Aspire IT Systems - robots.txt
-# Site:    https://www.aspireitsystems.io/
+# Site:    https://aspireitsystems.io/
 # Updated: 2026-05-22
 # =============================================================
 # This file tells crawlers what they may and may not fetch.
@@ -31,4 +31,4 @@ Disallow: /leads/
 Disallow: /*?v=
 
 # ---------- Sitemap ----------
-Sitemap: https://www.aspireitsystems.io/sitemap.xml
+Sitemap: https://aspireitsystems.io/sitemap.xml
