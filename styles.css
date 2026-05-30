@@ -1016,7 +1016,7 @@ footer {
 }
 .footer-inner {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr 1fr 1.6fr;
   gap: 40px;
   margin-bottom: 40px;
 }
@@ -1037,11 +1037,18 @@ footer {
 }
 .footer-col a { color: var(--text-mut); font-size: 14px; transition: color 0.2s; }
 .footer-col a:hover { color: var(--accent); }
+.footer-addresses {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
 .footer-address {
   color: var(--text-mut);
   font-size: 14px;
   line-height: 1.55;
   font-style: normal;
+  flex: 1 1 140px;
+  min-width: 140px;
 }
 .footer-address-label {
   display: block;
