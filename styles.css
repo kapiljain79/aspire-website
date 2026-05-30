@@ -1037,6 +1037,21 @@ footer {
 }
 .footer-col a { color: var(--text-mut); font-size: 14px; transition: color 0.2s; }
 .footer-col a:hover { color: var(--accent); }
+.footer-address {
+  color: var(--text-mut);
+  font-size: 14px;
+  line-height: 1.55;
+  font-style: normal;
+}
+.footer-address-label {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
 .footer-brand p { color: var(--text-mut); font-size: 14px; margin: 14px 0 0; max-width: 32ch; }
 .footer-bottom {
   border-top: 1px solid var(--border);
