@@ -1014,6 +1014,55 @@ footer {
   position: relative;
   z-index: 1;
 }
+.credentials {
+  padding: 80px 0 60px;
+}
+.credentials-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mut);
+  margin-bottom: 16px;
+}
+.credentials-title {
+  font-size: clamp(28px, 3vw, 40px);
+  margin: 0 0 12px;
+  line-height: 1.2;
+}
+.credentials-sub {
+  color: var(--text-mut);
+  max-width: 62ch;
+  margin: 0 0 40px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+.cert-tile {
+  margin: 0;
+  padding: 20px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.cert-tile:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.cert-tile img {
+  width: 100%;
+  max-width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
 .footer-inner {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1.6fr;
