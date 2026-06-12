@@ -162,7 +162,8 @@
                 </div>
                 <div class="footer-address">
                   <span class="footer-address-label">Canada Office</span>
-                  Edmonton, Alberta
+                  11007 Jasper Ave<br/>
+                  Edmonton, AB T5K 0K6
                 </div>
               </li>
               <li><a href="mailto:${EMAIL}">${EMAIL_DISPLAY}</a></li>
