@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Broadcast IT Readiness Assessment - Aspire IT Systems</title>
+<!--
+  OPTION 3 PROTOTYPE - "Pro / branded" (EDITORIAL light theme, matches aspireitsystems.io)
+  Single self-contained file. No external JS libraries => runs fully OFFLINE at the booth.
+  Radar chart drawn in plain <canvas>. Google Fonts are an enhancement; degrades to system serif/sans offline.
+  Palette from styles.css body[data-mood="editorial"]: cream #F4F1EA, navy #1A2B3D,
+  deep teal #134E5E, bright teal #2BB3B3, burnt orange #C75B22. Headlines = Fraunces serif.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#F4F1EA; --elev:#FAF7F0; --card:#FFFFFF; --border:#DDD6C8; --border-strong:#B8AE99;
+    --text:#1A2B3D; --mut:#5F6B7C; --dim:#8A95A4;
+    --accent:#134E5E; --accent-2:#2BB3B3; --accent-soft:rgba(19,78,94,.10);
+    --cta:#C75B22; --cta-hover:#D66932; --cta-soft:rgba(199,91,34,.10);
+    --r-sm:12px; --r-md:18px; --r-lg:28px;
+    --f-head:"Fraunces","Times New Roman",serif;
+    --f-body:"Space Grotesk","Helvetica Neue",Arial,sans-serif;
+    --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);line-height:1.55;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:780px;margin:0 auto;padding:34px 20px 80px}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .brand .mark{height:46px;width:auto;display:block}
+  .brand b{font-weight:700;letter-spacing:.01em;font-size:19px}.brand b span{color:var(--mut);font-weight:500}
+  .eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cta);
+    display:inline-flex;align-items:center;gap:8px;margin-bottom:12px}
+  h1{font-family:var(--f-head);font-weight:500;letter-spacing:-.025em;font-size:clamp(30px,6vw,52px);
+    line-height:1.02;margin:.05em 0 .35em}
+  h1 .accent{color:var(--accent-2)}
+  h3{font-family:var(--f-head);font-weight:600;letter-spacing:-.02em;font-size:22px}
+  .lead{color:var(--mut);font-size:17px;max-width:60ch}
+  .lead em{color:var(--accent);font-style:italic}
+  /* hero layout with globe */
+  .hero{display:grid;grid-template-columns:1fr 300px;gap:30px;align-items:center}
+  @media(max-width:720px){.hero{grid-template-columns:1fr}.hero-art{order:-1;max-width:260px;margin:0 auto}}
+  .hero-art{position:relative;aspect-ratio:1/1}
+  .hero-art svg{width:100%;height:100%;overflow:visible}
+  .globe-wire{transform-origin:200px 200px;animation:globeSpin 30s linear infinite}
+  @keyframes globeSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  .globe-label{position:absolute;bottom:4%;left:50%;transform:translateX(-50%);background:var(--card);
+    border:1px solid var(--border-strong);padding:8px 14px;border-radius:999px;font-family:var(--f-mono);
+    font-size:10px;letter-spacing:.18em;color:var(--text);display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+  .globe-label-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:30px;margin-top:26px;
+    box-shadow:0 20px 50px rgba(26,43,61,.06)}
+  label.field{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--mut);margin:0 0 6px}
+  input[type=text],input[type=email],select{width:100%;padding:13px 15px;border-radius:var(--r-sm);
+    background:var(--elev);border:1px solid var(--border-strong);color:var(--text);font-family:inherit;font-size:15px}
+  select{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235F6B7C' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+  input:focus,select:focus{outline:none;border-color:var(--accent-2);box-shadow:0 0 0 3px var(--accent-soft);background-color:#fff}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:520px){.grid2{grid-template-columns:1fr}}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--cta);color:#fff;font-weight:500;
+    padding:13px 26px;border-radius:999px;font-size:15px;transition:.15s;border:none;cursor:pointer}
+  .btn:hover{background:var(--cta-hover);transform:translateY(-1px);box-shadow:0 8px 20px rgba(199,91,34,.25)}
+  .btn.ghost{background:transparent;border:1px solid var(--border-strong);color:var(--text)}
+  .btn.ghost:hover{border-color:var(--accent);background:var(--accent-soft);box-shadow:none}
+  .btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+  .progress{height:6px;background:var(--border);border-radius:99px;overflow:hidden;margin:4px 0 24px}
+  .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .3s}
+  .qstep{animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .qnum{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--accent-2)}
+  .qtext{font-family:var(--f-head);font-weight:500;font-size:24px;letter-spacing:-.02em;margin:8px 0 20px;line-height:1.15}
+  .opt{display:block;width:100%;text-align:left;padding:15px 18px;margin:10px 0;border-radius:var(--r-sm);
+    background:var(--elev);border:1px solid var(--border);color:var(--text);font-size:15px;font-family:var(--f-body);
+    cursor:pointer;transition:.12s}
+  .opt:hover{border-color:var(--accent-2);background:#fff;transform:translateX(3px);box-shadow:0 6px 16px rgba(26,43,61,.06)}
+  .opt.sel{border-color:var(--accent);background:var(--accent-soft);font-weight:600;box-shadow:inset 4px 0 0 var(--accent-2)}
+  .opt.sel::after{content:" ✓";color:var(--accent)}
+  .hidden{display:none}
+  .scorehero{display:flex;align-items:center;gap:30px;flex-wrap:wrap}
+  .ring{position:relative;width:158px;height:158px;flex:none}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .num b{font-family:var(--f-head);font-weight:600;font-size:46px;line-height:1;color:var(--text)}
+  .ring .num span{font-size:10px;color:var(--mut);font-family:var(--f-mono);letter-spacing:.14em}
+  .levelpill{display:inline-block;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;
+    padding:7px 14px;border-radius:999px;background:var(--accent-soft);color:var(--accent);border:1px solid var(--border-strong)}
+  canvas{max-width:100%}
+  .recs{margin-top:6px}
+  .rec{display:flex;gap:14px;padding:16px;border-radius:var(--r-md);background:var(--elev);border:1px solid var(--border);margin:11px 0}
+  .rec .ico{flex:none;width:32px;height:32px;border-radius:9px;background:var(--cta-soft);color:var(--cta);
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--f-mono)}
+  .rec b{color:var(--accent);font-family:var(--f-head);font-weight:600;font-size:16px}
+  .rec p{margin:4px 0 0;color:var(--mut);font-size:14px}
+  .muted{color:var(--dim);font-size:12px;margin-top:18px;font-family:var(--f-mono);letter-spacing:.04em}
+  /* report contact block (prints into PDF) */
+  .contact-block{margin-top:30px;padding:22px;border:1px solid var(--border-strong);border-radius:var(--r-md);
+    background:var(--elev);display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+  .contact-block img{height:48px;width:auto}
+  .contact-block .cb-name{font-weight:700;font-size:16px}.contact-block .cb-name span{color:var(--mut);font-weight:500}
+  .contact-block .cb-tag{font-family:var(--f-head);font-style:italic;color:var(--accent);font-size:14px;margin-top:2px}
+  .contact-block .cb-lines{font-size:13px;color:var(--text);line-height:1.7;margin-top:8px}
+  .contact-block .cb-lines b{color:var(--accent);font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;
+    text-transform:uppercase;font-weight:500;display:inline-block;min-width:78px}
+  .contact-block .cb-sep{flex:1}
+  .cta-line{margin-top:30px;padding:18px 22px;border-radius:var(--r-md);background:var(--accent-soft);
+    border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .cta-line span{font-family:var(--f-head);font-weight:600;font-size:18px;color:var(--accent)}
+  /* per-question response list */
+  .ans{padding:13px 0;border-bottom:1px solid var(--border)}
+  .ans .aq{font-size:14px;font-weight:600;color:var(--text)}
+  .ans .arow{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:6px;flex-wrap:wrap}
+  .ans .asel{color:var(--mut);font-size:13px}
+  .ans .rate{display:flex;align-items:center;gap:9px;flex:none}
+  .dots{display:inline-flex;gap:3px}
+  .dot4{width:9px;height:9px;border-radius:50%;background:var(--border-strong)}
+  .dot4.on{background:var(--accent-2)}
+  .ratelbl{font-family:var(--f-mono);font-size:10px;letter-spacing:.05em;color:var(--accent);min-width:78px;text-align:right}
+  /* #6 vendor chips */
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  .chip{padding:9px 15px;border-radius:999px;border:1px solid var(--border-strong);background:var(--elev);
+    font-size:13px;font-family:var(--f-body);color:var(--text);cursor:pointer;transition:.12s}
+  .chip:hover{border-color:var(--accent-2)}
+  .chip.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+  /* #5 quiz layout + live mini radar */
+  .quiz-grid{display:grid;grid-template-columns:1fr 210px;gap:26px;align-items:start}
+  @media(max-width:600px){.quiz-grid{grid-template-columns:1fr}.quiz-aside{order:-1;max-width:200px;margin:0 auto}}
+  .quiz-aside{text-align:center;position:sticky;top:20px}
+  .mini-cap{font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;color:var(--mut);margin-top:6px;text-transform:uppercase}
+  /* #1 guess */
+  .guess-val{font-family:var(--f-head);font-weight:600;font-size:52px;color:var(--accent);line-height:1}
+  input[type=range]{width:100%;max-width:440px;accent-color:var(--accent)}
+  /* #4 persona banner */
+  .persona-banner{padding:18px 22px;border-radius:var(--r-md);margin-bottom:22px;
+    background:linear-gradient(100deg,var(--accent),var(--accent-2));color:#fff}
+  .persona{font-family:var(--f-head);font-weight:600;font-size:30px;letter-spacing:-.02em;line-height:1.05}
+  .persona-sub{font-size:14px;opacity:.92;margin-top:4px}
+  #r-guess{margin-top:10px;font-family:var(--f-mono);font-size:12px;color:var(--cta)}
+  #r-vendor{margin-top:8px;font-size:13px;color:var(--mut)}
+  /* #9 QR */
+  .qr-wrap{text-align:center;flex:none}
+  .qr-wrap img{height:104px;width:104px;background:#fff;border-radius:8px;padding:4px;border:1px solid var(--border)}
+  .qr-cap{font-family:var(--f-mono);font-size:9px;letter-spacing:.06em;color:var(--mut);margin-top:5px;text-transform:uppercase}
+  @media print{
+    body{background:#fff}
+    .no-print{display:none!important}
+    .card{box-shadow:none;border:1px solid #ccc}
+    .responses-section{page-break-before:always}
+    .ans{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><img src="../logo-mark.png" alt="Aspire IT Systems" class="mark" /><b>Aspire <span>IT SYSTEMS</span></b></div>
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Free &middot; 3 minutes &middot; AV/Broadcast Design</div>
+      <h1>Broadcast IT <span class="accent">readiness</span> check.</h1>
+      <p class="lead">Ten quick questions on your IP fabric design - PTP, redundancy, switching, flow orchestration and gateway interop. You'll get a maturity score across five dimensions, plus the top three priorities our network engineers would tackle first. <em>We fix what others escalate.</em></p>
+    </div>
+
+    <!-- Animated globe (from aspireitsystems.io hero) -->
+    <div class="hero-art">
+      <svg viewBox="0 0 400 400" aria-hidden="true">
+        <defs>
+          <radialGradient id="globe-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="globe-arc" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="var(--accent-2)" stop-opacity="0"/>
+            <stop offset="50%" stop-color="var(--accent-2)" stop-opacity="1"/>
+            <stop offset="100%" stop-color="var(--accent-2)" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <circle cx="200" cy="200" r="240" fill="url(#globe-glow)"/>
+        <g class="globe-wire" stroke="var(--accent)" fill="none" stroke-width="0.9" opacity="0.45">
+          <circle cx="200" cy="200" r="185"/>
+          <ellipse cx="200" cy="200" rx="185" ry="50"/>
+          <ellipse cx="200" cy="200" rx="185" ry="100"/>
+          <ellipse cx="200" cy="200" rx="185" ry="150"/>
+          <ellipse cx="200" cy="200" rx="50" ry="185"/>
+          <ellipse cx="200" cy="200" rx="100" ry="185"/>
+          <ellipse cx="200" cy="200" rx="150" ry="185"/>
+          <line x1="15" y1="200" x2="385" y2="200"/>
+          <line x1="200" y1="15" x2="200" y2="385"/>
+        </g>
+        <g class="globe-cities">
+          <circle cx="115" cy="140" r="5" fill="var(--accent)"><animate attributeName="opacity" values="1;0.4;1" dur="2.4s" repeatCount="indefinite"/></circle>
+          <circle cx="160" cy="125" r="4" fill="var(--accent)"/>
+          <circle cx="225" cy="145" r="4" fill="var(--accent)"/>
+          <circle cx="275" cy="170" r="5" fill="var(--accent-2)"><animate attributeName="opacity" values="1;0.3;1" dur="3s" repeatCount="indefinite"/></circle>
+          <circle cx="140" cy="230" r="4" fill="var(--accent)"/>
+          <circle cx="195" cy="265" r="4" fill="var(--accent)"/>
+          <circle cx="255" cy="240" r="4" fill="var(--accent)"/>
+          <circle cx="185" cy="195" r="6" fill="var(--accent-2)"><animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/></circle>
+        </g>
+        <path d="M 115,140 Q 200,50 275,170" stroke="url(#globe-arc)" stroke-width="1.6" fill="none">
+          <animate attributeName="stroke-dasharray" values="0 280; 100 180; 0 280" dur="2.4s" repeatCount="indefinite"/>
+        </path>
+        <path d="M 140,230 Q 220,320 255,240" stroke="url(#globe-arc)" stroke-width="1.6" fill="none">
+          <animate attributeName="stroke-dasharray" values="0 280; 80 200; 0 280" dur="3s" repeatCount="indefinite"/>
+        </path>
+        <path d="M 160,125 Q 240,80 275,170" stroke="url(#globe-arc)" stroke-width="1.2" fill="none" opacity="0.7">
+          <animate attributeName="stroke-dasharray" values="0 280; 70 210; 0 280" dur="3.6s" repeatCount="indefinite"/>
+        </path>
+        <circle r="3.5" fill="var(--accent-2)">
+          <animateMotion dur="3s" repeatCount="indefinite" path="M 115,140 Q 200,50 275,170"/>
+        </circle>
+      </svg>
+      <span class="globe-label"><span class="globe-label-dot"></span>INFOCOMM 2026 &middot; ONSITE</span>
+    </div>
+  </div>
+
+  <!-- STEP 1: lead -->
+  <div class="card" id="step-lead">
+    <div class="grid2">
+      <div><label class="field">First name</label><input type="text" id="f-first" /></div>
+      <div><label class="field">Last name</label><input type="text" id="f-last" /></div>
+      <div><label class="field">Company</label><input type="text" id="f-company" /></div>
+      <div><label class="field">Email</label><input type="email" id="f-email" /></div>
+      <div><label class="field">Role / title</label><input type="text" id="f-role" placeholder="e.g. Head of Engineering" /></div>
+      <div><label class="field">Project timeline</label>
+        <select id="f-timeline">
+          <option value="">Select timeline</option>
+          <option value="Immediate (0-3 months)">Immediate (0-3 months)</option>
+          <option value="3-6 months">3-6 months</option>
+          <option value="6-12 months">6-12 months</option>
+          <option value="12+ months">12+ months</option>
+          <option value="Just exploring">Just exploring</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:18px">
+      <div>
+      <label class="field">Switching platform</label>
+      <select id="f-vendor">
+        <option value="">Select platform</option>
+        <option value="Arista">Arista</option>
+        <option value="Cisco">Cisco</option>
+        <option value="Juniper">Juniper</option>
+        <option value="Netgear">Netgear</option>
+        <option value="Multi-vendor">Multi-vendor</option>
+        <option value="Undecided">Undecided</option>
+      </select>
+      </div>
+      <div>
+      <label class="field">Broadcast controller</label>
+      <select id="f-sdn">
+        <option value="">Select controller</option>
+        <option value="Lawo VSM">Lawo VSM</option>
+        <option value="Nevion VideoIPath (Sony)">Nevion VideoIPath (Sony)</option>
+        <option value="Grass Valley GV Orbit">Grass Valley GV Orbit</option>
+        <option value="Imagine Magellan">Imagine Magellan</option>
+        <option value="EVS Cerebrum">EVS Cerebrum</option>
+        <option value="Pebble Control">Pebble Control</option>
+        <option value="Skyline DataMiner">Skyline DataMiner</option>
+        <option value="Riedel">Riedel</option>
+        <option value="Cisco NDFC (NBM)">Cisco NDFC (NBM)</option>
+        <option value="Arista MCS">Arista MCS</option>
+        <option value="Other / in-house">Other / in-house</option>
+        <option value="None / undecided">None / undecided</option>
+      </select>
+      </div>
+    </div>
+    <!-- honeypot: hidden from humans, bots fill it -->
+    <input type="text" id="f-website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+    <p id="lead-err" style="color:var(--cta);font-size:13px;margin:12px 0 0;display:none"></p>
+    <div class="btnrow" style="margin-top:22px"><button class="btn" onclick="startQuiz()">Start assessment &rarr;</button></div>
+  </div>
+
+  <!-- STEP 2: quiz -->
+  <div class="card hidden" id="step-quiz">
+    <div class="progress"><i id="bar"></i></div>
+    <div class="quiz-grid">
+      <div id="qmount"></div>
+      <div class="quiz-aside">
+        <canvas id="mini-radar" width="200" height="200"></canvas>
+        <div class="mini-cap">Your profile, live</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2b: guess your score -->
+  <div class="card hidden" id="step-guess">
+    <div class="qnum">ONE LAST THING</div>
+    <div class="qtext">Before we reveal it, where do you think you land?</div>
+    <p style="color:var(--mut);margin:-8px 0 0">Drag to your gut-feel ST 2110 readiness score, then reveal the real one.</p>
+    <div style="text-align:center;margin:24px 0 10px">
+      <div class="guess-val"><span id="guess-num">50</span><span style="font-size:26px">%</span></div>
+      <input type="range" id="guess-range" min="0" max="100" value="50"
+        oninput="document.getElementById('guess-num').textContent=this.value" />
+    </div>
+    <div class="btnrow"><button class="btn ghost" onclick="backToQuiz()">&larr; Back</button><button class="btn" onclick="reveal()">Reveal my score &rarr;</button></div>
+  </div>
+
+  <!-- STEP 3: results -->
+  <div class="card hidden" id="step-results">
+    <div class="persona-banner">
+      <div class="persona" id="r-persona"></div>
+      <div class="persona-sub" id="r-persona-sub"></div>
+    </div>
+    <div class="scorehero">
+      <div class="ring">
+        <svg width="158" height="158">
+          <circle cx="79" cy="79" r="68" stroke="#DDD6C8" stroke-width="12" fill="none"/>
+          <circle id="ring-fg" cx="79" cy="79" r="68" stroke="#134E5E" stroke-width="12" fill="none"
+            stroke-linecap="round" stroke-dasharray="427.3" stroke-dashoffset="427.3"
+            style="transition:stroke-dashoffset 1s ease"/>
+        </svg>
+        <div class="num"><b id="r-score">0</b><span>% READY</span></div>
+      </div>
+      <div>
+        <div style="font-size:13px;color:var(--mut);margin-bottom:8px;font-family:var(--f-mono);letter-spacing:.04em" id="r-for"></div>
+        <div class="levelpill" id="r-level"></div>
+        <p style="color:var(--mut);margin:13px 0 0;max-width:36ch" id="r-blurb"></p>
+        <p id="r-guess"></p>
+        <p id="r-vendor"></p>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 4px">Maturity by dimension</h3>
+    <canvas id="radar" width="640" height="380"></canvas>
+
+    <h3 style="margin:28px 0 4px">Top 3 priorities</h3>
+    <div class="recs" id="r-recs"></div>
+
+    <div class="responses-section">
+      <h3 style="margin:30px 0 6px">Your responses</h3>
+      <div id="r-answers"></div>
+    </div>
+
+    <div class="cta-line">
+      <span>Ready to design your AV/Broadcast network?</span>
+      <a class="btn" href="mailto:info@aspireitsystems.io?subject=ST%202110%20network%20call%20-%20InfoComm%202026&body=Hi%20Aspire%20team%2C%20we'd%20like%20to%20book%20a%2030-minute%20call%20to%20discuss%20our%20ST%202110%20network%20design.">Book a 30-minute call</a>
+    </div>
+
+    <div class="contact-block">
+      <img src="../logo-mark.png" alt="Aspire IT Systems" />
+      <div>
+        <div class="cb-name">Aspire <span>IT Systems</span></div>
+        <div class="cb-tag">We fix what others escalate.</div>
+        <div class="cb-lines">
+          <div><b>Email</b> info@aspireitsystems.io</div>
+          <div><b>Web</b> aspireitsystems.io</div>
+          <div><b>LinkedIn</b> linkedin.com/company/aspire-it-systems</div>
+          <div><b>Coverage</b> North America</div>
+        </div>
+      </div>
+      <div class="cb-sep"></div>
+      <div class="qr-wrap">
+        <img id="qr" alt="Scan to save Aspire IT Systems contact" />
+        <div class="qr-cap">Scan to save our contact</div>
+      </div>
+    </div>
+
+    <div class="btnrow no-print" style="margin-top:26px">
+      <button class="btn" onclick="window.print()">Email / download PDF report</button>
+      <button class="btn ghost" onclick="location.reload()">Start over</button>
+    </div>
+    <p class="muted no-print" id="r-sync">&nbsp;</p>
+  </div>
+
+</div>
+
+<script>
+var DIMS=["Timing & Sync","Network Fabric","Flow Orchestration","Capacity & Interop","Monitoring & Ops"];
+var Q=[
+  {d:0,q:"How is PTP (IEEE 1588 / SMPTE 2059) timing designed in your facility?",
+   a:[["No PTP yet / unsure",0],["Single grandmaster, no boundary clocks",1],["Redundant grandmasters, boundary clocks on switches",3],["Fully redundant PTP, monitored & profile-validated",4]]},
+  {d:1,q:"Is the media network built for ST 2022-7 seamless redundancy (dual red/blue paths)?",
+   a:[["Single network, no redundancy",0],["Planned, not built",1],["Dual networks, partial coverage",3],["Full red/blue, hitless ST 2022-7",4]]},
+  {d:1,q:"What is your switching fabric and vendor mix?",
+   a:[["Not designed yet",0],["Single-vendor, single switch",1],["Single-vendor spine/leaf",3],["Multi-vendor spine/leaf, interop-validated",4]]},
+  {d:2,q:"How are media flows managed across the fabric - via an SDN controller, or dynamic multicast routing?",
+   a:[["Not decided / don't know",0],["Relying purely on dynamic multicast (IGMP/PIM)",1],["Dynamic multicast, tuned for media",2],["SDN / broadcast controller orchestrating flows (bandwidth-aware)",4]]},
+  {d:3,q:"What bandwidth scale and flow types must the network carry (HD/3G/UHD, uncompressed vs JPEG XS)?",
+   a:[["Not sized yet",0],["HD/3G only",2],["UHD uncompressed planned",3],["Mixed UHD + compressed, fully capacity-planned",4]]},
+  {d:3,q:"How are your SDI-to-IP gateways / media nodes integrated with the network?",
+   a:[["No gateways selected",0],["Vendor gateways, not network-tested",1],["Gateways integrated, basic testing",3],["Gateways fully interop-tested with switches & PTP",4]]},
+  {d:2,q:"Do you use NMOS (IS-04/IS-05) and a broadcast controller for discovery & connection management?",
+   a:[["No / unaware",0],["Evaluating",1],["NMOS registry deployed",3],["NMOS + broadcast controller orchestrating flows",4]]},
+  {d:4,q:"How do you monitor the media network (PTP health, flow integrity, packet timing)?",
+   a:[["No monitoring",0],["SNMP / basic only",1],["Media-aware monitoring",3],["Full PTP + flow + packet-timing monitoring",4]]},
+  {d:4,q:"How is the media fabric segmented and secured from corporate IT?",
+   a:[["Flat / shared network",0],["Basic VLANs",2],["Segmented + ACLs/QoS",3],["Fully isolated, zero-trust controls",4]]},
+  {d:4,q:"Who owns and operates the IP network once it's live?",
+   a:[["Broadcast engineers, stretched thin",0],["IT team, limited 2110 knowledge",1],["Shared, unclear ownership",2],["Dedicated team or managed partner",4]]}
+];
+var REC=[
+ ["Timing & sync","Design a redundant, monitored PTP architecture - dual grandmasters, boundary clocks per switch, profile validation - the foundation every ST 2110 flow depends on."],
+ ["Network fabric","Architect a multi-vendor spine/leaf fabric with ST 2022-7 dual red/blue paths for hitless, production-grade resilience."],
+ ["Flow orchestration","Move from best-effort multicast to SDN / broadcast-controller flow management with NMOS IS-04/05 for deterministic, bandwidth-aware switching."],
+ ["Capacity & interop","Size the 25/100G fabric to your real flow mix (HD/3G/UHD, uncompressed vs JPEG XS) and interop-test SDI/IP gateways end-to-end with the switches and PTP."],
+ ["Monitoring & ops","Stand up media-aware monitoring (PTP health, flow integrity, packet timing), segment the fabric, and define clear operational ownership so it stays on-air."]
+];
+var idx=0,answers=[],lead={},guessVal=null;
+var DM_FULL=[0,0,0,0,0];
+for(var qi=0;qi<Q.length;qi++) DM_FULL[Q[qi].d]+=4;
+function val(id){return document.getElementById(id).value;}
+function startQuiz(){
+  lead={first:val('f-first').trim(),last:val('f-last').trim(),company:val('f-company').trim(),
+        email:val('f-email').trim(),role:val('f-role').trim(),timeline:val('f-timeline').trim(),
+        vendor:val('f-vendor'),sdn:val('f-sdn'),website:val('f-website')};
+  // handler requires first, last, company, valid email
+  var err=document.getElementById('lead-err');
+  var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email);
+  if(!lead.first||!lead.last||!lead.company||!emailOk){
+    err.textContent='Please add first name, last name, company and a valid email.';
+    err.style.display='block';return;
+  }
+  err.style.display='none';
+  document.getElementById('step-lead').classList.add('hidden');
+  document.getElementById('step-quiz').classList.remove('hidden');
+  idx=0;answers=[];render();drawMini();
+}
+function render(){
+  var item=Q[idx],sel=answers[idx];
+  document.getElementById('bar').style.width=(idx/Q.length*100)+'%';
+  var h='<div class="qstep"><div class="qnum">QUESTION '+(idx+1)+' / '+Q.length+'</div><div class="qtext">'+item.q+'</div>';
+  for(var j=0;j<item.a.length;j++){
+    var on=(sel&&sel.j===j)?' sel':'';
+    h+='<button class="opt'+on+'" onclick="choose('+j+')">'+item.a[j][0]+'</button>';
+  }
+  h+='<p id="q-hint" style="color:var(--cta);font-size:13px;margin:12px 0 0;display:none">Please select an option to continue.</p>';
+  h+='<div class="btnrow" style="margin-top:18px">'+
+       '<button class="btn ghost" onclick="goBack()">&larr; Back</button>'+
+       '<button class="btn" onclick="goNext()">'+(idx===Q.length-1?'Continue':'Next')+' &rarr;</button>'+
+     '</div></div>';
+  document.getElementById('qmount').innerHTML=h;
+}
+function choose(j){
+  var opt=Q[idx].a[j];
+  answers[idx]={label:opt[0],v:opt[1],d:Q[idx].d,j:j};
+  drawMini();render();
+}
+function goNext(){
+  if(!answers[idx]){document.getElementById('q-hint').style.display='block';return;}
+  idx++;
+  if(idx<Q.length) render(); else showGuess();
+}
+function goBack(){
+  if(idx===0){
+    document.getElementById('step-quiz').classList.add('hidden');
+    document.getElementById('step-lead').classList.remove('hidden');
+    return;
+  }
+  idx--;render();
+}
+function backToQuiz(){
+  document.getElementById('step-guess').classList.add('hidden');
+  document.getElementById('step-quiz').classList.remove('hidden');
+  idx=Q.length-1;render();
+}
+function showGuess(){
+  document.getElementById('bar').style.width='100%';
+  document.getElementById('step-quiz').classList.add('hidden');
+  document.getElementById('step-guess').classList.remove('hidden');
+}
+function reveal(){
+  guessVal=parseInt(document.getElementById('guess-range').value,10);
+  document.getElementById('step-guess').classList.add('hidden');
+  finish();
+}
+function finish(){
+  document.getElementById('bar').style.width='100%';
+  var ds=[0,0,0,0,0],dm=[0,0,0,0,0],tot=0;
+  for(var i=0;i<answers.length;i++){ds[answers[i].d]+=answers[i].v;dm[answers[i].d]+=4;tot+=answers[i].v;}
+  var pct=Math.round(tot/(Q.length*4)*100);
+  document.getElementById('step-quiz').classList.add('hidden');
+  document.getElementById('step-results').classList.remove('hidden');
+  var fg=document.getElementById('ring-fg'),C=427.3;
+  setTimeout(function(){fg.style.strokeDashoffset=(C-C*pct/100).toString();},80);
+  var el=document.getElementById('r-score'),n=0;
+  var iv=setInterval(function(){n+=Math.ceil(pct/28);if(n>=pct){n=pct;clearInterval(iv);}el.textContent=n;},25);
+  var level="Early stage",blurb="Early in the design. High upside from a structured ST 2110 network architecture.";
+  if(pct>80){level="Production-grade design";blurb="Mature ST 2110 design. Focus on optimisation, monitoring and resilience.";}
+  else if(pct>55){level="Build-ready";blurb="Strong foundation. Close the remaining gaps before you go on-air.";}
+  else if(pct>30){level="In design";blurb="Design under way. A focused plan will de-risk the build.";}
+  document.getElementById('r-level').textContent=level;
+  document.getElementById('r-blurb').textContent=blurb;
+  document.getElementById('r-for').textContent=(lead.company?lead.company+' · ':'')+'Prepared by Aspire IT Systems';
+
+  // #4 persona
+  var p=persona(pct);
+  document.getElementById('r-persona').textContent=p[0];
+  document.getElementById('r-persona-sub').textContent=p[1];
+
+  // #1 guess vs actual
+  var ge=document.getElementById('r-guess');
+  if(guessVal===null){ge.textContent='';}
+  else{
+    var diff=pct-guessVal,t='You guessed '+guessVal+'%, actual '+pct+'%';
+    if(Math.abs(diff)<=5) t+=' · spot on.';
+    else if(diff<0) t+=' · '+(-diff)+' points lower than you thought.';
+    else t+=' · '+diff+' points higher than you thought.';
+    ge.textContent=t;
+  }
+
+  // #6 vendor note
+  document.getElementById('r-vendor').textContent=vendorNote(lead.vendor);
+
+  // #9 QR -> vCard to save Aspire contact
+  var vcard='BEGIN:VCARD\nVERSION:3.0\nFN:Aspire IT Systems\nORG:Aspire IT Systems\nEMAIL:info@aspireitsystems.io\nURL:https://aspireitsystems.io\nEND:VCARD';
+  document.getElementById('qr').src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&margin=0&data='+encodeURIComponent(vcard);
+
+  drawRadar(ds.map(function(s,k){return dm[k]?s/dm[k]:0;}));
+  var ord=[0,1,2,3,4].sort(function(a,b){return (ds[a]/dm[a])-(ds[b]/dm[b]);});
+  var rh="";
+  for(var k=0;k<3;k++) rh+='<div class="rec"><div class="ico">'+(k+1)+'</div><div><b>'+REC[ord[k]][0]+'</b><p>'+REC[ord[k]][1]+'</p></div></div>';
+  document.getElementById('r-recs').innerHTML=rh;
+
+  // per-question response list (question + chosen answer + 0-4 rating)
+  var words=['Not in place','Early','Developing','Good','Optimised'];
+  var ah='';
+  for(var i=0;i<answers.length;i++){
+    var a=answers[i],dots='';
+    for(var z=0;z<4;z++) dots+='<span class="dot4'+(z<a.v?' on':'')+'"></span>';
+    ah+='<div class="ans"><div class="aq">'+(i+1)+'. '+Q[i].q+'</div>'+
+        '<div class="arow"><div class="asel">&rsaquo; '+a.label+'</div>'+
+        '<div class="rate"><span class="dots">'+dots+'</span>'+
+        '<span class="ratelbl">'+a.v+'/4 &middot; '+words[a.v]+'</span></div></div></div>';
+  }
+  document.getElementById('r-answers').innerHTML=ah;
+
+  // build the payload submit-assessment.php expects
+  var dimsPayload=[];
+  for(var d=0;d<5;d++){
+    dimsPayload.push({key:DIMS[d].toLowerCase().replace(/[^a-z0-9]+/g,'-'),label:DIMS[d],
+      score:ds[d],max:dm[d],pct:Math.round(ds[d]/dm[d]*100)});
+  }
+  var roleField=[lead.role,lead.timeline?('Timeline: '+lead.timeline):'',
+    lead.vendor?('Switch: '+lead.vendor):'',lead.sdn?('Controller: '+lead.sdn):'']
+    .filter(Boolean).join(' · ');
+  var payload={
+    first:lead.first,last:lead.last,company:lead.company,email:lead.email,
+    role:roleField,track_id:'infocomm-st2110',track:'AV/Broadcast Design (InfoComm 2026)',
+    overall:pct,tier:level,dimensions:dimsPayload,website:lead.website||''
+  };
+
+  // always keep a local backup, then send
+  try{var s=JSON.parse(localStorage.getItem('aspire_pro_leads')||'[]');
+    s.push({payload:payload,ts:Date.now()});
+    localStorage.setItem('aspire_pro_leads',JSON.stringify(s));}catch(e){}
+  submitLead(payload);
+}
+
+var ENDPOINT='../submit-assessment.php';
+function submitLead(p){
+  var el=document.getElementById('r-sync');
+  el.textContent='Sending report…';
+  fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)})
+    .then(function(r){return r.json();})
+    .then(function(j){
+      if(j&&j.ok){el.innerHTML='✓ Report sent. '+p.email+' and your team have been emailed.';}
+      else{queue(p);el.textContent='Saved on this device, will sync when back online.';}
+    })
+    .catch(function(){queue(p);el.textContent='Saved on this device, will sync when back online.';});
+}
+function queue(p){try{var q=JSON.parse(localStorage.getItem('aspire_pending')||'[]');q.push(p);
+  localStorage.setItem('aspire_pending',JSON.stringify(q));}catch(e){}}
+function flushQueue(){
+  var q;try{q=JSON.parse(localStorage.getItem('aspire_pending')||'[]');}catch(e){return;}
+  if(!q.length)return;
+  var remaining=[],done=0;
+  q.forEach(function(p){
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)})
+      .then(function(r){return r.json();}).then(function(j){if(!(j&&j.ok))remaining.push(p);})
+      .catch(function(){remaining.push(p);})
+      .then(function(){done++;if(done===q.length)localStorage.setItem('aspire_pending',JSON.stringify(remaining));});
+  });
+}
+flushQueue();
+window.addEventListener('online',flushQueue);
+function persona(pct){
+  if(pct>80) return['2110 Native','Fully IP-native. You live in the fabric.'];
+  if(pct>55) return['IP Pioneer','Leading the transition on a solid IP core.'];
+  if(pct>30) return['Hybrid Juggler','Running SDI and IP side by side.'];
+  return['SDI Stronghold','Rock-solid in SDI, early on the IP journey.'];
+}
+function vendorNote(v){
+  if(!v||v==='Undecided') return 'Still choosing a platform? We design vendor-neutral and help you pick the right fit.';
+  if(v==='Multi-vendor') return 'Multi-vendor fabric noted - exactly where interop testing across Arista, Cisco, Juniper and Netgear pays off.';
+  return v+' fabric noted - we design, validate and tune ST 2110 on '+v+' every day.';
+}
+// #5 live mini radar of partial scores as the user answers
+function drawMini(){
+  var cv=document.getElementById('mini-radar');if(!cv)return;
+  var x=cv.getContext('2d'),W=cv.width,H=cv.height,cx=W/2,cy=H/2,R=78,N=5;
+  var ds=[0,0,0,0,0];
+  for(var i=0;i<answers.length;i++) if(answers[i]) ds[answers[i].d]+=answers[i].v;
+  var vals=ds.map(function(s,k){return DM_FULL[k]?s/DM_FULL[k]:0;});
+  x.clearRect(0,0,W,H);
+  for(var g=1;g<=4;g++){x.beginPath();
+    for(var i=0;i<=N;i++){var an=-Math.PI/2+i/N*2*Math.PI,r=R*g/4;var px=cx+r*Math.cos(an),py=cy+r*Math.sin(an);i?x.lineTo(px,py):x.moveTo(px,py);}
+    x.strokeStyle="rgba(95,107,124,.20)";x.stroke();}
+  for(var i=0;i<N;i++){var an=-Math.PI/2+i/N*2*Math.PI;
+    x.beginPath();x.moveTo(cx,cy);x.lineTo(cx+R*Math.cos(an),cy+R*Math.sin(an));x.strokeStyle="rgba(95,107,124,.20)";x.stroke();}
+  x.beginPath();
+  for(var i=0;i<=N;i++){var k=i%N,an=-Math.PI/2+k/N*2*Math.PI,r=R*vals[k];var px=cx+r*Math.cos(an),py=cy+r*Math.sin(an);i?x.lineTo(px,py):x.moveTo(px,py);}
+  x.closePath();x.fillStyle="rgba(43,179,179,.22)";x.fill();x.strokeStyle="#134E5E";x.lineWidth=2;x.stroke();
+  for(var i=0;i<N;i++){var an=-Math.PI/2+i/N*2*Math.PI,r=R*vals[i];x.beginPath();x.arc(cx+r*Math.cos(an),cy+r*Math.sin(an),3,0,7);x.fillStyle="#C75B22";x.fill();}
+}
+function drawRadar(vals){
+  var cv=document.getElementById('radar'),x=cv.getContext('2d');
+  var W=cv.width,H=cv.height,cx=W/2,cy=H/2+8,R=128,N=vals.length;
+  x.clearRect(0,0,W,H);
+  for(var g=1;g<=4;g++){x.beginPath();
+    for(var i=0;i<=N;i++){var an=-Math.PI/2+i/N*2*Math.PI,r=R*g/4;var px=cx+r*Math.cos(an),py=cy+r*Math.sin(an);i?x.lineTo(px,py):x.moveTo(px,py);}
+    x.strokeStyle="rgba(95,107,124,.22)";x.stroke();}
+  x.fillStyle="#5F6B7C";x.font='12px "JetBrains Mono",monospace';x.textAlign="center";
+  for(var i=0;i<N;i++){var an=-Math.PI/2+i/N*2*Math.PI;
+    x.beginPath();x.moveTo(cx,cy);x.lineTo(cx+R*Math.cos(an),cy+R*Math.sin(an));x.strokeStyle="rgba(95,107,124,.22)";x.stroke();
+    var lx=cx+(R+26)*Math.cos(an),ly=cy+(R+26)*Math.sin(an);x.fillText(DIMS[i],lx,ly+4);}
+  x.beginPath();
+  for(var i=0;i<=N;i++){var k=i%N,an=-Math.PI/2+k/N*2*Math.PI,r=R*vals[k];var px=cx+r*Math.cos(an),py=cy+r*Math.sin(an);i?x.lineTo(px,py):x.moveTo(px,py);}
+  x.closePath();x.fillStyle="rgba(43,179,179,.20)";x.fill();x.strokeStyle="#134E5E";x.lineWidth=2;x.stroke();
+  for(var i=0;i<N;i++){var an=-Math.PI/2+i/N*2*Math.PI,r=R*vals[i];x.beginPath();x.arc(cx+r*Math.cos(an),cy+r*Math.sin(an),4,0,7);x.fillStyle="#C75B22";x.fill();}
+}
+</script>
+</body>
+</html>
