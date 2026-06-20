@@ -9,17 +9,6 @@
   const LINKEDIN = 'https://linkedin.com/company/aspire-it-systems';
 
   const navHTML = `
-    <div class="event-marquee" id="event-marquee" role="banner">
-      <a href="contact.html?ref=infocomm" class="event-marquee-track" aria-label="June 17-19 - we'd love to connect with you">
-        <span class="event-marquee-item"><span class="event-pip"></span><b>InfoComm 2026 June 17–19</b> · We'd love to connect with you · <span class="event-cta">Book a meeting</span></span>
-        <span class="event-marquee-item" aria-hidden="true"><span class="event-pip"></span><b>InfoComm 2026 June 17–19</b> · We'd love to connect with you · <span class="event-cta">Book a meeting</span></span>
-        <span class="event-marquee-item" aria-hidden="true"><span class="event-pip"></span><b>InfoComm 2026 June 17–19</b> · We'd love to connect with you · <span class="event-cta">Book a meeting</span></span>
-        <span class="event-marquee-item" aria-hidden="true"><span class="event-pip"></span><b>InfoComm 2026 June 17–19</b> · We'd love to connect with you · <span class="event-cta">Book a meeting</span></span>
-      </a>
-      <button class="event-marquee-close" id="event-marquee-close" aria-label="Dismiss">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-      </button>
-    </div>
     <nav class="nav" id="nav">
       <div class="container nav-inner">
         <a href="index.html" class="brand" aria-label="Aspire IT Systems">
@@ -276,25 +265,4 @@
     });
   }
 
-  /* ----- Event marquee dismiss + persistence ----- */
-  const marquee = document.getElementById('event-marquee');
-  if (marquee) {
-    if (localStorage.getItem('infocomm-dismissed') === '1') {
-      marquee.style.display = 'none';
-      document.body.classList.remove('has-event-marquee');
-    } else {
-      document.body.classList.add('has-event-marquee');
-    }
-    const close = document.getElementById('event-marquee-close');
-    if (close) close.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      localStorage.setItem('infocomm-dismissed', '1');
-      marquee.style.transition = 'transform 0.3s ease, opacity 0.3s ease, height 0.3s ease, margin 0.3s ease';
-      marquee.style.transform = 'translateY(-100%)';
-      marquee.style.opacity = '0';
-      document.body.classList.remove('has-event-marquee');
-      setTimeout(() => marquee.style.display = 'none', 300);
-    });
-  }
 })();
