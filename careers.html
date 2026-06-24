@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4HRMZ3ZGPF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4HRMZ3ZGPF');
+  </script>
+  <title>Careers at Aspire IT Systems | Join Our Team</title>
+  <meta name="description" content="Join Aspire IT Systems — North America's go-to firm for enterprise networking, cloud, security, and AV/broadcast infrastructure. View open positions." />
+  <link rel="canonical" href="https://aspireitsystems.io/careers.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Aspire IT Systems" />
+  <meta property="og:url" content="https://aspireitsystems.io/careers.html" />
+  <meta property="og:title" content="Careers at Aspire IT Systems | Join Our Team" />
+  <meta property="og:description" content="We're hiring. Join a certified team delivering complex network, cloud, and AV/broadcast projects across North America." />
+  <meta property="og:image" content="https://aspireitsystems.io/linkedin-post-image.png" />
+  <meta property="og:image:alt" content="Aspire IT Systems - We fix what others escalate" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Careers at Aspire IT Systems" />
+  <meta name="twitter:description" content="We're hiring. Join a certified team delivering complex network, cloud, and AV/broadcast projects across North America." />
+  <meta name="twitter:image" content="https://aspireitsystems.io/linkedin-post-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=m10" />
+
+  <style>
+    /* ── Careers page styles ─────────────────────────────────────── */
+
+    /* Live roles badge */
+    .roles-count {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(20,184,166,0.08);
+      color: var(--accent);
+      border: 1px solid rgba(20,184,166,0.22);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      margin-bottom: 36px;
+      text-transform: uppercase;
+    }
+    .roles-count::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: rolePulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes rolePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.75); }
+    }
+
+    /* Job listing stack */
+    .job-listing {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Individual job card */
+    .job-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    body[data-mood="editorial"] .job-card { background: #fff; }
+
+    /* Card header */
+    .job-card-header {
+      padding: 32px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    @media (max-width: 720px) { .job-card-header { padding: 24px 20px; } }
+
+    .job-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .job-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .job-tag.loc  { background: rgba(14,165,233,0.08); color: #0369a1; border: 1px solid rgba(14,165,233,0.2); }
+    .job-tag.type { background: rgba(20,184,166,0.08); color: var(--accent); border: 1px solid rgba(20,184,166,0.2); }
+    .job-tag.lvl  { background: rgba(249,115,22,0.08); color: #c2410c; border: 1px solid rgba(249,115,22,0.2); }
+
+    .job-card-header h2 {
+      font-family: var(--f-display);
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 10px;
+      line-height: 1.2;
+    }
+    .job-card-header .job-sub {
+      font-size: 15px;
+      color: var(--text-mut);
+      margin: 0;
+      line-height: 1.55;
+      max-width: 680px;
+    }
+
+    /* Card body: 2-col on desktop */
+    .job-card-body {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 0;
+    }
+    @media (max-width: 860px) { .job-card-body { grid-template-columns: 1fr; } }
+
+    .job-main {
+      padding: 40px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+    @media (max-width: 860px) { .job-main { border-right: none; border-bottom: 1px solid var(--border); padding: 24px 20px; } }
+
+    /* Sections within the main column */
+    .job-section h3 {
+      font-family: var(--f-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .job-section p {
+      font-size: 15px;
+      line-height: 1.72;
+      color: var(--text-mut);
+      margin: 0;
+    }
+    .job-section p + p { margin-top: 10px; }
+    .job-section ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .job-section ul li {
+      font-size: 15px;
+      line-height: 1.62;
+      color: var(--text-mut);
+      padding-left: 22px;
+      position: relative;
+    }
+    .job-section ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 12px;
+      top: 2px;
+    }
+    .job-section ul.nice-to-have li::before { content: "◦"; color: var(--text-dim); font-size: 14px; top: 0; }
+
+    /* Tech tags */
+    .job-tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .job-tech-tag {
+      display: inline-block;
+      padding: 4px 11px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      color: var(--text-mut);
+      font-weight: 500;
+    }
+    body[data-mood="editorial"] .job-tech-tag { background: rgba(0,0,0,0.03); }
+
+    /* Side panel */
+    .job-side {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    @media (max-width: 720px) { .job-side { padding: 24px 20px; } }
+
+    .detail-box {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    body[data-mood="editorial"] .detail-box { background: rgba(0,0,0,0.025); }
+
+    .detail-box h4 {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin: 0 0 14px;
+    }
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .detail-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .detail-row .dr-label { font-size: 12.5px; color: var(--text-dim); white-space: nowrap; }
+    .detail-row .dr-val   { font-size: 12.5px; font-weight: 600; color: var(--text); text-align: right; }
+
+    /* Apply box */
+    .apply-box {
+      border: 1px solid rgba(20,184,166,0.4);
+      border-radius: 12px;
+      padding: 22px;
+      background: rgba(20,184,166,0.04);
+    }
+    .apply-box h4 {
+      font-family: var(--f-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 8px;
+    }
+    .apply-box p {
+      font-size: 13px;
+      color: var(--text-mut);
+      line-height: 1.5;
+      margin: 0 0 16px;
+    }
+    .apply-box .btn { width: 100%; justify-content: center; text-align: center; }
+    .apply-email {
+      margin-top: 11px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .apply-email a { color: var(--accent); text-decoration: none; }
+    .apply-email a:hover { text-decoration: underline; }
+
+    /* Open application card */
+    .open-app {
+      margin-top: 28px;
+      padding: 36px 40px;
+      border: 1px dashed var(--border);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .open-app-copy h3 {
+      font-family: var(--f-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 6px;
+    }
+    .open-app-copy p {
+      font-size: 14px;
+      color: var(--text-mut);
+      margin: 0;
+      line-height: 1.55;
+    }
+    @media (max-width: 600px) { .open-app { padding: 24px 20px; } }
+
+    /* Why work here */
+    .perks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .perk-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    body[data-mood="editorial"] .perk-card { background: #fff; }
+    .perk-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(20,184,166,0.1);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .perk-card h3 {
+      font-family: var(--f-display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 8px;
+    }
+    .perk-card p {
+      font-size: 13.5px;
+      color: var(--text-mut);
+      line-height: 1.6;
+      margin: 0;
+    }
+  </style>
+</head>
+<body data-mood="editorial">
+
+  <header id="nav-mount"></header>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="crumb"><a href="index.html">Home</a><span class="sep">/</span><span>Careers</span></div>
+      <div class="eyebrow">Join the team</div>
+      <h1>Build your career at the firm that <span class="accent">fixes what others escalate.</span></h1>
+      <p class="lead">We work on the hard ones — enterprise AV-over-IP deployments, multi-site data centre migrations, broadcast IP fabrics, zero-trust overhauls. If you want a role where your expertise actually matters, we're hiring.</p>
+    </div>
+  </section>
+
+  <!-- ── Open Roles ────────────────────────────────────────────── -->
+  <section class="section" style="padding-top: 48px;">
+    <div class="container">
+
+      <span class="roles-count">2 Open Roles</span>
+
+      <div class="job-listing">
+
+        <!-- ══════════════════════════════════════════════════════════
+             JOB 1 — Account Executive (Canada)
+             ══════════════════════════════════════════════════════════ -->
+        <article class="job-card" id="ae-canada">
+          <div class="job-card-header">
+            <div class="job-tags">
+              <span class="job-tag lvl">Senior · AE</span>
+              <span class="job-tag loc">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Canada — Remote
+              </span>
+              <span class="job-tag type">Full-Time</span>
+            </div>
+            <h2>Account Executive — Canada</h2>
+            <p class="job-sub">Hunter-style enterprise sales across AV, broadcast, media &amp; converged IT. Uncapped commission with OTE $200K–$300K.</p>
+          </div>
+
+          <div class="job-card-body">
+            <!-- Main content -->
+            <div class="job-main">
+
+              <div class="job-section">
+                <h3>About the role</h3>
+                <p>Aspire IT Systems is a technology solutions provider specialising in enterprise networking, network security, cloud infrastructure, and AV, broadcast &amp; media integration. We work with enterprise, production, and media organisations to design and deliver high-performance environments that support collaboration, content creation, and modern media workflows.</p>
+                <p>We are looking for an <strong>aggressive, hunter-style Account Executive</strong> to drive net-new business across Canada. This role is ideal for someone who knows how to create pipeline, build relationships, and close complex opportunities in AV, broadcast, media, and converged IT environments.</p>
+              </div>
+
+              <div class="job-section">
+                <h3>Responsibilities</h3>
+                <ul>
+                  <li>Prospect and develop new business opportunities across AV, broadcast, media, corporate production, live events, and enterprise collaboration markets.</li>
+                  <li>Build and manage a qualified pipeline through outbound prospecting, partner engagement, referrals, industry networking, and direct outreach.</li>
+                  <li>Open new accounts and develop relationships with broadcasters, AV integrators, production companies, enterprise customers, venues, and media organisations.</li>
+                  <li>Lead the full sales cycle from discovery and qualification through proposal, negotiation, and close.</li>
+                  <li>Work with internal technical teams and vendor partners to position integrated solutions across enterprise networking, AV-over-IP, wireless, switching, secure access, and media infrastructure.</li>
+                  <li>Maintain accurate CRM activity, pipeline visibility, and sales forecasting.</li>
+                  <li>Represent Aspire IT Systems at customer meetings, partner sessions, and targeted industry events to drive net-new opportunities.</li>
+                </ul>
+              </div>
+
+              <div class="job-section">
+                <h3>Qualifications</h3>
+                <ul>
+                  <li>5+ years in business development, account executive, or solution sales roles with quota-carrying responsibility.</li>
+                  <li>Proven success generating net-new opportunities and closing complex solution sales.</li>
+                  <li>Strong background in AV, broadcast, media technology, or converged IT and AV solution sales.</li>
+                  <li>Solid understanding of enterprise networking, IP-based media transport, AV-over-IP, switching, wireless, and network security.</li>
+                  <li>Working knowledge of AV-over-IP and media networking ecosystems including Cisco, Arista, and Netgear AV; audio &amp; transport technologies such as Dante and Biamp; AV control/DSP ecosystems such as Q-SYS, Crestron, and Extron.</li>
+                  <li>Ability to engage both technical and business stakeholders with credibility and confidence.</li>
+                  <li>Strong communication, presentation, negotiation, and relationship-building skills.</li>
+                  <li>Self-motivated, competitive, and comfortable working in a remote, growth-focused sales role.</li>
+                </ul>
+              </div>
+
+              <div class="job-section">
+                <h3>Technology ecosystem</h3>
+                <div class="job-tech-list">
+                  <span class="job-tech-tag">Cisco</span>
+                  <span class="job-tech-tag">Arista</span>
+                  <span class="job-tech-tag">Netgear AV</span>
+                  <span class="job-tech-tag">AV-over-IP</span>
+                  <span class="job-tech-tag">Dante</span>
+                  <span class="job-tech-tag">Biamp</span>
+                  <span class="job-tech-tag">Q-SYS</span>
+                  <span class="job-tech-tag">Crestron</span>
+                  <span class="job-tech-tag">Extron</span>
+                  <span class="job-tech-tag">ST 2110</span>
+                  <span class="job-tech-tag">Enterprise Networking</span>
+                  <span class="job-tech-tag">Network Security</span>
+                  <span class="job-tech-tag">Cloud Infrastructure</span>
+                  <span class="job-tech-tag">Wireless</span>
+                </div>
+              </div>
+
+            </div><!-- /.job-main -->
+
+            <!-- Side panel -->
+            <aside class="job-side">
+
+              <div class="detail-box">
+                <h4>Role details</h4>
+                <div class="detail-row">
+                  <span class="dr-label">Location</span>
+                  <span class="dr-val">Canada (Remote)</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">Travel</span>
+                  <span class="dr-val">As required</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">Type</span>
+                  <span class="dr-val">Full-Time</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">Experience</span>
+                  <span class="dr-val">5+ years</span>
+                </div>
+              </div>
+
+              <div class="detail-box">
+                <h4>Compensation</h4>
+                <div class="detail-row">
+                  <span class="dr-label">Base salary</span>
+                  <span class="dr-val">$100K – $120K</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">OTE</span>
+                  <span class="dr-val">$200K – $300K</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">Commission</span>
+                  <span class="dr-val">Uncapped + accelerators</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">Vacation</span>
+                  <span class="dr-val">Competitive paid</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">Benefits</span>
+                  <span class="dr-val">Extended medical</span>
+                </div>
+              </div>
+
+              <div class="apply-box">
+                <h4>Ready to apply?</h4>
+                <p>Send your CV with a brief note on your AV / broadcast / media sales background.</p>
+                <a href="mailto:info@aspireitsystems.io?subject=Application%3A%20Account%20Executive%20%E2%80%94%20Canada&body=Hi%20Aspire%20IT%20team%2C%0A%0AI%20am%20applying%20for%20the%20Account%20Executive%20(Canada)%20position.%20Please%20find%20my%20CV%20attached.%0A%0A" class="btn btn-primary">
+                  Apply now
+                  <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+                <div class="apply-email">or email <a href="mailto:info@aspireitsystems.io">info@aspireitsystems.io</a></div>
+              </div>
+
+            </aside>
+          </div><!-- /.job-card-body -->
+        </article>
+        <!-- ══ end JOB 1 ══════════════════════════════════════════ -->
+
+
+        <!-- ══════════════════════════════════════════════════════════
+             JOB 2 — Junior Account Executive (Canada)
+             ══════════════════════════════════════════════════════════ -->
+        <article class="job-card" id="jae-canada">
+          <div class="job-card-header">
+            <div class="job-tags">
+              <span class="job-tag lvl">Junior · AE</span>
+              <span class="job-tag loc">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Canada — Remote
+              </span>
+              <span class="job-tag type">Full-Time</span>
+            </div>
+            <h2>Junior Account Executive — Canada</h2>
+            <p class="job-sub">SDR-to-AE growth path for a hungry, coachable seller ready to learn complex solutions and grow into a full quota-carrying role.</p>
+          </div>
+
+          <div class="job-card-body">
+            <!-- Main content -->
+            <div class="job-main">
+
+              <div class="job-section">
+                <h3>About the role</h3>
+                <p>Aspire IT Systems is seeking a <strong>Junior Account Executive</strong> who is hungry to learn, comfortable with outbound activity, and ready to grow into a full Account Executive role. This position combines SDR-style prospecting with the opportunity to own and close smaller deals under the guidance of senior sales leadership.</p>
+                <p>If you are looking to build a career in technology sales and want the opportunity to learn complex solutions while contributing directly to pipeline and revenue, we'd love to hear from you.</p>
+              </div>
+
+              <div class="job-section">
+                <h3>Responsibilities</h3>
+                <ul>
+                  <li>Research and identify target accounts across AV, broadcast, media, and enterprise markets.</li>
+                  <li>Conduct outbound prospecting (email, phone, LinkedIn, events) to generate qualified meetings and new opportunities.</li>
+                  <li>Qualify inbound and outbound leads and book discovery meetings for senior Account Executives &amp; Pre-Sales engineers.</li>
+                  <li>Support the sales cycle with follow-ups, meeting notes, coordination of demos, and preparation of basic proposals.</li>
+                  <li>Own and close smaller, well-defined deals and renewals under an approved pricing and packaging framework.</li>
+                  <li>Maintain accurate records of activities, leads, and opportunities in the CRM.</li>
+                  <li>Collaborate with senior sales and technical teams to understand Aspire IT Systems' portfolio and clearly communicate value to prospects.</li>
+                </ul>
+              </div>
+
+              <div class="job-section">
+                <h3>Qualifications</h3>
+                <ul>
+                  <li>1–3 years of experience in sales, business development, inside sales, or SDR roles.</li>
+                  <li>Interest in building a career in technology sales within AV, broadcast, media, and enterprise networking.</li>
+                  <li>Comfortable with outbound outreach and high-activity environments (cold calls, sequences, LinkedIn outreach).</li>
+                  <li>Strong communication skills (written and verbal) and confidence speaking with business and technical stakeholders.</li>
+                  <li>Highly coachable, organised, and self-motivated with the ability to work independently in a remote setting.</li>
+                </ul>
+              </div>
+
+              <div class="job-section">
+                <h3>Nice to have</h3>
+                <ul class="nice-to-have">
+                  <li>Exposure to AV integrators, media organisations, or IT service providers.</li>
+                  <li>Basic understanding of concepts such as AV-over-IP, video conferencing, or IP networking.</li>
+                  <li>Experience supporting or shadowing full-cycle sales processes.</li>
+                </ul>
+              </div>
+
+            </div><!-- /.job-main -->
+
+            <!-- Side panel -->
+            <aside class="job-side">
+
+              <div class="detail-box">
+                <h4>Role details</h4>
+                <div class="detail-row">
+                  <span class="dr-label">Location</span>
+                  <span class="dr-val">Canada (Remote)</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">Travel</span>
+                  <span class="dr-val">As required</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">Type</span>
+                  <span class="dr-val">Full-Time</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">Experience</span>
+                  <span class="dr-val">1–3 years</span>
+                </div>
+              </div>
+
+              <div class="detail-box">
+                <h4>Compensation</h4>
+                <div class="detail-row">
+                  <span class="dr-label">Base salary</span>
+                  <span class="dr-val">$55K – $70K</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">OTE</span>
+                  <span class="dr-val">$80K – $100K</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">Commission</span>
+                  <span class="dr-val">Performance-based</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">Vacation</span>
+                  <span class="dr-val">Paid vacation</span>
+                </div>
+                <div class="detail-row">
+                  <span class="dr-label">Benefits</span>
+                  <span class="dr-val">Comprehensive health</span>
+                </div>
+              </div>
+
+              <div class="apply-box">
+                <h4>Ready to apply?</h4>
+                <p>Send your CV and a brief note on what draws you to technology sales.</p>
+                <a href="mailto:info@aspireitsystems.io?subject=Application%3A%20Junior%20Account%20Executive%20%E2%80%94%20Canada&body=Hi%20Aspire%20IT%20team%2C%0A%0AI%20am%20applying%20for%20the%20Junior%20Account%20Executive%20(Canada)%20position.%20Please%20find%20my%20CV%20attached.%0A%0A" class="btn btn-primary">
+                  Apply now
+                  <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+                <div class="apply-email">or email <a href="mailto:info@aspireitsystems.io">info@aspireitsystems.io</a></div>
+              </div>
+
+            </aside>
+          </div><!-- /.job-card-body -->
+        </article>
+        <!-- ══ end JOB 2 ══════════════════════════════════════════ -->
+
+      </div><!-- /.job-listing -->
+
+      <!-- Open application -->
+      <div class="open-app">
+        <div class="open-app-copy">
+          <h3>Don't see your role?</h3>
+          <p>We're always interested in hearing from sharp engineers and solution sellers. Send your CV and we'll keep it on file.</p>
+        </div>
+        <a href="mailto:info@aspireitsystems.io?subject=General%20Application%20%E2%80%94%20Aspire%20IT%20Systems&body=Hi%20Aspire%20IT%20team%2C%0A%0AI%20am%20interested%20in%20joining%20your%20team.%20Please%20find%20my%20CV%20attached.%0A%0A" class="btn btn-ghost" style="white-space:nowrap;">
+          Send a general application
+          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Why work here ─────────────────────────────────────────── -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Why Aspire IT</div>
+          <h2>Work on the problems most firms can't solve.</h2>
+        </div>
+        <p>We've delivered data centre migrations other firms failed on, AV-over-IP deployments at broadcast scale, and zero-trust rollouts across regulated enterprises. If you want work that stretches your skills and rewards performance, this is the place.</p>
+      </div>
+      <div class="perks-grid">
+        <div class="perk-card">
+          <div class="perk-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Complex, meaningful work</h3>
+          <p>Multi-site migrations, broadcast IP fabrics, enterprise zero-trust — the kind of projects that define careers.</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+          </div>
+          <h3>Expert team</h3>
+          <p>Work alongside CCIE, CCDE, Azure, and Arista-certified engineers who've shipped these technologies in production at scale.</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+          </div>
+          <h3>Remote-first</h3>
+          <p>Work from anywhere in Canada. We care about results, not offices — with travel where it counts.</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3>Competitive comp</h3>
+          <p>Market-rate base salaries, uncapped commission plans with accelerators, and comprehensive health benefits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────────────── -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="eyebrow" style="margin-bottom:20px;">Let's talk</div>
+        <h2 class="cta-quote">Think you're the right fit? <span class="accent">We'd love to hear from you.</span></h2>
+        <p>Submit your resume via the role above or email your CV directly to <a href="mailto:info@aspireitsystems.io" style="color:inherit;text-decoration:underline;font-weight:600;">info@aspireitsystems.io</a></p>
+        <div class="cta-actions">
+          <a href="#ae-canada" class="btn btn-primary">View Account Executive role <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#jae-canada" class="btn btn-ghost">View Junior AE role</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-mount"></div>
+
+  <script src="partials.js?v=m10"></script>
+  <script src="app.js?v=m2"></script>
+  <script src="chat.js?v=m2"></script>
+</body>
+</html>

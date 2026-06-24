@@ -58,6 +58,7 @@
           <li><a href="partners.html" data-page="partners">Partners</a></li>
           <li><a href="blog.html" data-page="blog">Blog</a></li>
           <li><a href="about.html" data-page="about">About</a></li>
+          <li><a href="careers.html" data-page="careers">Careers</a></li>
           <li><a href="contact.html" data-page="contact">Contact</a></li>
           <li class="mobile-only">
             <div class="mobile-assess-section">
@@ -136,6 +137,7 @@
               <li><a href="case-studies.html">Case Studies</a></li>
               <li><a href="partners.html">Partners</a></li>
               <li><a href="blog.html">Blog</a></li>
+              <li><a href="careers.html">Careers</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>

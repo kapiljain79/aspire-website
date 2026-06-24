@@ -1780,26 +1780,27 @@ footer {
   padding-top: 28px;
   border-top: 1px solid var(--border);
   display: flex;
-  flex-wrap: wrap;
-  gap: 14px 28px;
+  flex-wrap: nowrap;
+  gap: 8px 14px;
   align-items: center;
-  max-width: 600px;
 }
 .trust-badges .label {
   font-family: var(--f-mono);
   font-size: 10px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-dim);
+  white-space: nowrap;
 }
 .trust-badge {
   font-family: var(--f-display);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-mut);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  white-space: nowrap;
 }
 .trust-badge::before {
   content: "✓";
