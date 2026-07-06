@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IGMP Multicast Demo | Aspire IT Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Mulish:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fh:'Fraunces',Georgia,serif;
+    --fb:'Mulish',"Segoe UI",system-ui,Arial,sans-serif;
+    --fm:"SFMono-Regular",Consolas,Menlo,monospace;
+    --cream:#F3EFE5; --card:#FFFFFF; --ink:#1B2A2D; --sub:#5E6E70;
+    --teal:#2A7D75; --teal-d:#1F5E58; --teal-l:#E2EDEA;
+    --orange:#C25A28; --orange-d:#A44A20;
+    --red:#C43D2E; --red-l:#F6E4DF; --amber:#C7871F;
+    --border:#DAD3C5; --good:#2A7D75;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--fb);-webkit-font-smoothing:antialiased}
+  .landing{position:relative;overflow:hidden;min-height:300px;border-bottom:1px solid var(--border);
+    background-image:linear-gradient(rgba(27,42,45,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(27,42,45,.045) 1px,transparent 1px);
+    background-size:46px 46px}
+  .landing .wrap{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:20px 22px 34px}
+  .landing .top{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:inline-flex;align-items:center;gap:12px}
+  .brand .logo-img{height:52px;width:auto;display:block;border-radius:9px}
+  .brand .wm{font-family:var(--fb);font-weight:700;font-size:23px;line-height:1;color:var(--ink)}
+  .brand .wm2{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--teal);margin-top:3px}
+  .pill{background:var(--orange);color:#fff;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:8px 16px;border-radius:22px}
+  .landing h1{font-family:var(--fh);font-size:42px;line-height:1.08;margin:26px 0 10px;font-weight:600;color:var(--ink);letter-spacing:-.5px;max-width:720px}
+  .landing h1 .t{color:var(--teal)}
+  .landing p{margin:0;color:var(--sub);font-size:17px;max-width:640px;line-height:1.55}
+  .globe{position:absolute;right:40px;top:50%;transform:translateY(-50%);width:270px;height:270px;z-index:1;opacity:.95;pointer-events:none}
+  .app{max-width:1180px;margin:0 auto;padding:22px 22px 48px}
+  .hint{font-size:13px;color:var(--sub);margin:0 0 8px}
+  .row-controls{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+  .modes{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .modes .lbl,.settings .lbl{color:var(--sub);font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-right:2px}
+  .modes button{border:2px solid var(--border);background:#fff;color:var(--ink);font-size:15px;font-weight:700;padding:10px 18px;border-radius:30px;cursor:pointer;transition:.15s}
+  .modes button:hover{border-color:var(--orange)}
+  .modes button.active{background:var(--orange);border-color:var(--orange);color:#fff}
+  .settings{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-left:auto}
+  .sw{border:2px solid var(--border);background:#fff;border-radius:30px;padding:9px 15px 9px 12px;font-size:14px;font-weight:700;cursor:pointer;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+  .sw .pip{width:14px;height:14px;border-radius:50%;background:#C4BCA9}
+  .sw.on{border-color:var(--teal)} .sw.on .pip{background:var(--teal)}
+  .sw.off{border-color:var(--red)} .sw.off .pip{background:var(--red)}
+  .stage{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}
+  .left{flex:1 1 520px;min-width:320px;display:flex;flex-direction:column;gap:14px}
+  .diagram{background:#FBF8F1;border:1px solid var(--border);border-radius:16px;padding:10px}
+  .diagram svg{width:100%;height:auto;display:block}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;padding:2px 6px;font-size:13px;color:var(--sub)}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+  .notice{background:#fff;border:1px solid var(--border);border-left:6px solid var(--orange);border-radius:12px;padding:14px 18px;font-size:16px;line-height:1.55;color:var(--ink)}
+  .notice b{display:block;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--orange-d);margin-bottom:5px}
+  .panel{flex:1 1 330px;min-width:290px;display:flex;flex-direction:column;gap:16px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px}
+  .card h3{margin:0 0 6px;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--sub)}
+  .host{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px dashed var(--border)}
+  .host:last-child{border-bottom:0}
+  .host .name{font-weight:700;width:74px}
+  .dot{width:11px;height:11px;border-radius:50%;flex:none}
+  .dot.good{background:var(--teal)} .dot.warn{background:var(--red)} .dot.off{background:#C4BCA9}
+  .toggle{border:2px solid var(--border);background:#fff;border-radius:20px;padding:7px 14px;font-size:13px;font-weight:700;cursor:pointer;color:var(--ink);white-space:nowrap;margin-left:auto;min-width:122px;text-align:center}
+  .toggle.on{background:var(--teal-l);border-color:var(--teal);color:var(--teal-d)}
+  .toggle.off{background:#EFEBDF;color:var(--sub)}
+  .srcbtn{border:2px solid var(--border);background:#fff;border-radius:20px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer;color:var(--teal-d);white-space:nowrap}
+  .srcbtn.ab{background:var(--red-l);border-color:var(--red);color:var(--red)}
+  .eff{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+  .eff .big{font-size:42px;font-weight:600;font-family:var(--fh);color:var(--ink)}
+  .bar{height:14px;border-radius:8px;background:#E7E1D2;overflow:hidden}
+  .bar > i{display:block;height:100%;background:var(--teal);width:100%;transition:width .3s,background .3s}
+  .metrics{display:flex;gap:18px;margin-top:12px;font-size:14px}
+  .metrics div{flex:1} .metrics .n{font-size:24px;font-weight:600;font-family:var(--fh)}
+  .metrics .good{color:var(--teal)} .metrics .bad{color:var(--red)}
+  .impact{margin-top:12px;font-size:14px;line-height:1.5;color:var(--ink);border-top:1px solid var(--border);padding-top:10px}
+  .cli{margin-top:22px}
+  .cli .card{padding:0;overflow:hidden}
+  .cli .bar-top{display:flex;align-items:center;gap:8px;background:#20302E;padding:10px 16px}
+  .cli .bar-top .d{width:12px;height:12px;border-radius:50%}
+  .cli .bar-top .t{color:#BFD0CB;font-size:13px;margin-left:8px;font-family:var(--fm)}
+  pre.term{margin:0;padding:18px 20px;background:#172523;color:#E4EDEA;font-family:var(--fm);font-size:14.5px;line-height:1.65;overflow-x:auto;white-space:pre}
+  .term .com{color:#7D9089} .term .cmd{color:#E4EDEA} .term .kw{color:#E7A24E}
+  .term .warn{color:#EF8C79;font-weight:700} .term .ok{color:#66C2A9}
+  footer{margin-top:24px;color:var(--sub);font-size:14px}
+  footer .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  footer .copyright{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12.5px;color:var(--sub);line-height:1.5}
+  footer a{color:var(--teal-d);text-decoration:none;font-weight:700}
+  .flow{fill:none;stroke-width:5;stroke-linecap:round}
+  .flow.on{stroke-dasharray:11 9;animation:dash .7s linear infinite}
+  .flow.fast{animation-duration:.42s}
+  @keyframes dash{to{stroke-dashoffset:-20}}
+  .nodebox{fill:#fff;stroke:var(--border);stroke-width:2.5}
+  .nlabel{font-weight:700;font-size:17px;fill:var(--ink)} .nsub{font-size:13px;fill:var(--sub)}
+  .badge{font-size:12px;font-weight:700}
+  @media (max-width:900px){.globe{display:none}.landing{min-height:auto}.landing h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="landing">
+  <svg class="globe" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs><radialGradient id="gg" cx="50%" cy="45%" r="58%"><stop offset="0" stop-color="#2A7D75" stop-opacity="0.10"/><stop offset="1" stop-color="#2A7D75" stop-opacity="0"/></radialGradient></defs>
+    <circle cx="150" cy="150" r="150" fill="url(#gg)"/>
+    <g stroke="#2A7D75" fill="none" stroke-width="1" opacity="0.36">
+      <circle cx="150" cy="150" r="118"/>
+      <ellipse cx="150" cy="150" rx="118" ry="38"/>
+      <ellipse cx="150" cy="91" rx="102" ry="33"/>
+      <ellipse cx="150" cy="209" rx="102" ry="33"/>
+      <ellipse cx="150" cy="48" rx="59" ry="19"/>
+      <ellipse cx="150" cy="252" rx="59" ry="19"/>
+    </g>
+    <g id="globeMer" stroke="#2A7D75" fill="none"></g>
+    <g fill="none" stroke="#35A39C" stroke-width="1.5" opacity="0.75" stroke-linecap="round">
+      <path d="M96 118 Q150 92 208 120"/>
+      <path d="M102 198 Q150 220 204 192"/>
+    </g>
+    <g>
+      <circle cx="150" cy="150" r="7" fill="#2FB0AA"/>
+      <circle cx="120" cy="112" r="4" fill="#1F3B55"/>
+      <circle cx="184" cy="130" r="4.5" fill="#16324B"/>
+      <circle cx="200" cy="185" r="4" fill="#1F3B55"/>
+      <circle cx="118" cy="200" r="4" fill="#16324B"/>
+      <circle cx="168" cy="212" r="4" fill="#1F3B55"/>
+      <circle cx="213" cy="150" r="4" fill="#8FB8B4"/>
+      <circle cx="205" cy="96" r="3.5" fill="#2FB0AA"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <img src="assets/logo.jpg" alt="Aspire IT Systems" class="logo-img"/>
+      </div>
+      <span class="pill">Interactive demo</span>
+    </div>
+    <h1>What IGMP really does<br><span class="t">to your AV network.</span></h1>
+    <p>A live demo of an AV-over-IP network. Two cameras share the same network, but each display should get only the one it asked for. Change the IGMP setting and watch what actually reaches each screen and what gets wasted.</p>
+  </div>
+</div>
+
+<div class="app">
+  <div class="row-controls">
+    <div class="modes" id="modes"><span class="lbl">IGMP mode</span>
+      <button data-mode="v1">v1</button><button data-mode="v2">v2</button><button data-mode="v3" class="active">v3</button>
+    </div>
+    <div class="settings"><span class="lbl">Switch</span>
+      <button class="sw on" id="snoopBtn"><span class="pip"></span>Snooping: <span>ON</span></button>
+      <button class="sw on" id="querierBtn"><span class="pip"></span>Querier: <span>ON</span></button>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="left">
+      <div class="diagram">
+        <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+          <defs><marker id="mk" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+          <line class="flow" id="la" x1="172" y1="158" x2="364" y2="244" marker-end="url(#mk)"/>
+          <line class="flow" id="lb" x1="172" y1="352" x2="364" y2="280" marker-end="url(#mk)"/>
+          <line class="flow" id="lha0" x1="534" y1="241" x2="738" y2="104" marker-end="url(#mk)"/>
+          <line class="flow" id="lhb0" x1="534" y1="248" x2="738" y2="115" marker-end="url(#mk)"/>
+          <line class="flow" id="lha1" x1="534" y1="259" x2="738" y2="258" marker-end="url(#mk)"/>
+          <line class="flow" id="lhb1" x1="534" y1="266" x2="738" y2="269" marker-end="url(#mk)"/>
+          <line class="flow" id="lha2" x1="534" y1="277" x2="738" y2="411" marker-end="url(#mk)"/>
+          <line class="flow" id="lhb2" x1="534" y1="284" x2="738" y2="422" marker-end="url(#mk)"/>
+          <g id="blockB" style="display:none"><circle cx="350" cy="272" r="17" fill="#FAEEDA" stroke="#C7871F" stroke-width="3"/>
+            <line x1="339" y1="261" x2="361" y2="283" stroke="#C7871F" stroke-width="3"/></g>
+          <!-- Source A: camera (real device image) -->
+          <g>
+            <rect x="42" y="106" width="130" height="100" rx="12" fill="#FFFFFF" stroke="#2A7D75" stroke-width="2.5"/>
+            <image href="assets/camera.png" x="52" y="113" width="110" height="80" preserveAspectRatio="xMidYMid meet"/>
+            <text class="nlabel" x="107" y="228" text-anchor="middle" fill="#1F5E58">Cam 1</text>
+            <text class="nsub" x="107" y="246" text-anchor="middle" fill="#3E8A82">the feed you want</text>
+          </g>
+          <!-- Source B: second camera (not requested) -->
+          <g>
+            <rect x="42" y="298" width="130" height="100" rx="12" fill="#FFFFFF" stroke="#C43D2E" stroke-width="2.5"/>
+            <image href="assets/camera.png" x="52" y="305" width="110" height="80" preserveAspectRatio="xMidYMid meet"/>
+            <text class="nlabel" x="107" y="420" text-anchor="middle" fill="#9A3226">Cam 2</text>
+            <text class="nsub" x="107" y="438" text-anchor="middle" fill="#B45B4A">not requested</text>
+          </g>
+          <!-- Switch -->
+          <g>
+            <rect class="nodebox" id="swbox" x="366" y="210" width="168" height="100" rx="12"/>
+            <circle cx="382" cy="226" r="3" fill="#2A7D75"/><circle cx="393" cy="226" r="3" fill="#2A7D75"/><circle cx="404" cy="226" r="3" fill="#C7871F"/>
+            <text class="nlabel" x="450" y="266" text-anchor="middle">AV switch</text>
+            <text class="nsub badge" id="swmode" x="450" y="289" text-anchor="middle">IGMPv3</text>
+            <g fill="#C4BCA9"><rect x="388" y="296" width="11" height="8" rx="1"/><rect x="404" y="296" width="11" height="8" rx="1"/><rect x="420" y="296" width="11" height="8" rx="1"/><rect x="436" y="296" width="11" height="8" rx="1"/><rect x="452" y="296" width="11" height="8" rx="1"/><rect x="468" y="296" width="11" height="8" rx="1"/><rect x="484" y="296" width="11" height="8" rx="1"/><rect x="500" y="296" width="11" height="8" rx="1"/></g>
+          </g>
+          <!-- Displays -->
+          <g>
+            <text class="nlabel" x="796" y="66" text-anchor="middle" font-size="16">Screen 1</text>
+            <rect id="hb0" x="740" y="76" width="112" height="66" rx="9" fill="#1E2B2D" stroke="#DAD3C5" stroke-width="3"/>
+            <rect id="scr0" x="748" y="84" width="96" height="50" rx="4" fill="#2A3436"/>
+            <rect x="788" y="142" width="16" height="9" fill="#C4BCA9"/><rect x="770" y="151" width="52" height="6" rx="3" fill="#C4BCA9"/>
+            <text class="nsub badge" id="hs0" x="796" y="176" text-anchor="middle">receiving</text>
+          </g>
+          <g>
+            <text class="nlabel" x="796" y="220" text-anchor="middle" font-size="16">Screen 2</text>
+            <rect id="hb1" x="740" y="230" width="112" height="66" rx="9" fill="#1E2B2D" stroke="#DAD3C5" stroke-width="3"/>
+            <rect id="scr1" x="748" y="238" width="96" height="50" rx="4" fill="#2A3436"/>
+            <rect x="788" y="296" width="16" height="9" fill="#C4BCA9"/><rect x="770" y="305" width="52" height="6" rx="3" fill="#C4BCA9"/>
+            <text class="nsub badge" id="hs1" x="796" y="330" text-anchor="middle">receiving</text>
+          </g>
+          <g>
+            <text class="nlabel" x="796" y="374" text-anchor="middle" font-size="16">Screen 3</text>
+            <rect id="hb2" x="740" y="384" width="112" height="66" rx="9" fill="#1E2B2D" stroke="#DAD3C5" stroke-width="3"/>
+            <rect id="scr2" x="748" y="392" width="96" height="50" rx="4" fill="#2A3436"/>
+            <rect x="788" y="450" width="16" height="9" fill="#C4BCA9"/><rect x="770" y="459" width="52" height="6" rx="3" fill="#C4BCA9"/>
+            <text class="nsub badge" id="hs2" x="796" y="484" text-anchor="middle">receiving</text>
+          </g>
+        </svg>
+      </div>
+      <div class="legend">
+        <span><i style="background:#2A7D75"></i> Cam 1 feed</span>
+        <span><i style="background:#C7871F"></i> Cam 2 feed</span>
+        <span><i style="background:#C43D2E"></i> screen getting a feed it didn't ask for</span>
+      </div>
+      <div class="notice"><b>What to notice</b><span id="noticeText"></span></div>
+    </div>
+
+    <aside class="panel">
+      <div class="card">
+        <h3>Screens on your network</h3>
+        <p class="hint">Click a screen to turn it on or off, like someone starting or stopping a video.</p>
+        <div id="hostCtl"></div>
+      </div>
+      <div class="card">
+        <h3>How efficient is the network</h3>
+        <div class="eff"><span class="big" id="effPct">100%</span><span style="color:var(--sub)">of delivered traffic is wanted</span></div>
+        <div class="bar"><i id="effBar"></i></div>
+        <div class="metrics">
+          <div><div class="n good" id="mUse">0</div>useful streams</div>
+          <div><div class="n bad" id="mWaste">0</div>wasted streams</div>
+        </div>
+        <div class="impact" id="impact"></div>
+      </div>
+      <div class="card notice" style="border-left-color:var(--teal)"><b style="color:var(--teal-d)">In plain terms</b><span id="exText"></span></div>
+    </aside>
+  </div>
+
+  <div class="cli">
+    <div class="card">
+      <div class="bar-top"><span class="d" style="background:#E5615A"></span><span class="d" style="background:#E8B84B"></span><span class="d" style="background:#5FBE7E"></span><span class="t">switch# show running-config | section multicast</span></div>
+      <pre class="term" id="cli"></pre>
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-row">
+      <span>IGMP multicast demo &middot; built by Aspire IT Systems</span>
+      <a href="https://aspireitsystems.io" target="_blank" rel="noopener">aspireitsystems.io</a>
+    </div>
+    <div class="copyright">&copy; 2026 Aspire IT Systems. All rights reserved. This interactive demonstration, including its design, layout, wording, and underlying implementation, is the proprietary work of Aspire IT Systems. Unauthorized copying, reproduction, redistribution, or reuse in whole or in part is prohibited.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var p=new URLSearchParams(location.search);
+  var mode=p.get('mode')||'v3'; if(['v1','v2','v3'].indexOf(mode)<0)mode='v3';
+  var snooping=p.get('snoop')!=='off', querier=p.get('querier')!=='off';
+  var hosts=[{joined:true,filter:'A',flooded:false,t:null},{joined:true,filter:'A',flooded:false,t:null},{joined:false,filter:'A',flooded:false,t:null}];
+  var TEAL='#2A7D75',TEALD='#1F5E58',RED='#C43D2E',REDD='#9A3226',AMBER='#C7871F',OFFSCR='#2A3436',FAINT='#E7C7BF';
+  function floodAll(){return(!snooping||!querier);}
+  function receiving(h){
+    if(floodAll())return{a:true,b:true};
+    if(mode==='v1')return(h.joined||h.flooded)?{a:true,b:true}:{a:false,b:false};
+    if(mode==='v2')return h.joined?{a:true,b:true}:{a:false,b:false};
+    if(h.joined)return{a:true,b:(h.filter==='AB')};
+    return{a:false,b:false};
+  }
+  function plain(){
+    if(!snooping)return'The network has no traffic control, so it treats every video like a broadcast and pushes both feeds to every screen, even the ones switched off. This is the worst case for cost and security.';
+    if(!querier)return'Snooping is on, but with no active querier the network cannot keep track of who wants what, so it floods every screen anyway. This exact gap is one of the most common real-world mistakes we find on AV networks.';
+    if(mode==='v1')return'Old IGMPv1: when a screen is switched off it keeps getting fed until a slow timeout, and there is no way to block the second camera. Bandwidth is wasted on video nobody is watching.';
+    if(mode==='v2')return'IGMPv2: switching a screen off stops its feed right away, which is better. But there is still no source control, so every active screen also receives Cam 2, which it never asked for.';
+    return'IGMPv3: every screen gets only the camera it asked for, and Cam 2 is blocked at the switch. Nothing is wasted and nothing unwanted gets through.';
+  }
+  function noticeMsg(){
+    var offFed=hosts.filter(function(h){return !h.joined && receiving(h).a;}).length;
+    var extraB=hosts.filter(function(h){var wantB=h.joined&&mode==='v3'&&h.filter==='AB';return h.joined && receiving(h).b && !wantB;}).length;
+    if(!snooping)return'Every screen, even the ones turned off, is being force-fed both feeds. That red traffic is pure waste, on every port.';
+    if(!querier)return'Snooping looks enabled, yet every screen is still flooded. Without a querier the network cannot tell who wants what. A very common and costly oversight.';
+    if(offFed>0)return'A screen was switched off, but the network keeps sending it video. You are paying for bandwidth nobody is using.';
+    if(extraB>0)return'Active screens are also receiving Cam 2, a feed they never asked for. The network cannot filter by source, so the extra camera reaches your displays.';
+    return'Every screen receives only what it asked for, and Cam 2 is blocked at the switch unless a screen subscribes to it. This is a clean, efficient, secure network.';
+  }
+  function impactMsg(pct){
+    if(pct>=90)return'Almost no waste. The network delivers exactly what each screen needs.';
+    if(pct>=60)return'Some of your bandwidth is being spent on traffic no screen asked for.';
+    return'Most of this multicast traffic is wasted. On a real deployment that means stuttering video, higher bandwidth costs, and an open door for unwanted traffic.';
+  }
+  function setFlow(el,on,color,fast){el.classList.toggle('on',on);el.classList.toggle('fast',!!fast);el.style.stroke=on?color:'transparent';}
+  function setSw(id,on){var b=document.getElementById(id);b.classList.toggle('on',on);b.classList.toggle('off',!on);b.querySelector('span:last-child').textContent=on?'ON':'OFF';}
+  function render(){
+    document.querySelectorAll('#modes button').forEach(function(b){b.classList.toggle('active',b.dataset.mode===mode);});
+    setSw('snoopBtn',snooping);setSw('querierBtn',querier);
+    var flood=floodAll();
+    var sw=document.getElementById('swbox'),sm=document.getElementById('swmode');
+    sw.style.stroke=flood?RED:'#DAD3C5';sm.textContent=flood?'FLOODING':('IGMP'+mode);sm.style.fill=flood?RED:'#5E6E70';
+    document.getElementById('exText').textContent=plain();
+    document.getElementById('noticeText').textContent=noticeMsg();
+    var anyB=false,useful=0,wasted=0;
+    hosts.forEach(function(h,i){
+      var r=receiving(h);
+      var wantA=h.joined, wantB=h.joined&&mode==='v3'&&h.filter==='AB';
+      if(r.b)anyB=true;
+      useful+=(r.a&&wantA?1:0)+(r.b&&wantB?1:0);
+      var hw=(r.a&&!wantA?1:0)+(r.b&&!wantB?1:0); wasted+=hw;
+      var lai=document.getElementById('lha'+i),lbi=document.getElementById('lhb'+i),box=document.getElementById('hb'+i),scr=document.getElementById('scr'+i),st=document.getElementById('hs'+i);
+      setFlow(lai,r.a,TEAL); setFlow(lbi,r.b,AMBER,r.b&&!wantB);
+      var pstate;
+      if(!r.a&&!r.b){pstate='off';box.style.stroke=OFFSCR;scr.setAttribute('fill',OFFSCR);st.textContent='screen off';st.style.fill='#5E6E70';}
+      else if(!h.joined){pstate='warn';box.style.stroke=RED;scr.setAttribute('fill',RED);st.textContent='off, still fed';st.style.fill=REDD;}
+      else if(hw>0){pstate='warn';box.style.stroke=RED;scr.setAttribute('fill',RED);st.textContent=(r.b&&!wantB)?'+ Cam 2':'unwanted';st.style.fill=REDD;}
+      else{pstate='clean';box.style.stroke=TEAL;scr.setAttribute('fill',TEAL);st.textContent=wantB?'Cam 1 + 2':'your video';st.style.fill=TEALD;}
+      updateCtl(i,h,pstate);
+    });
+    setFlow(document.getElementById('la'),true,TEAL);
+    setFlow(document.getElementById('lb'),true,AMBER);
+    document.getElementById('blockB').style.display=(!flood&&!anyB)?'block':'none';
+    var total=useful+wasted,pct=total?Math.round(useful/total*100):100;
+    document.getElementById('effPct').textContent=pct+'%';
+    var bar=document.getElementById('effBar');bar.style.width=pct+'%';bar.style.background=pct>=90?TEAL:pct>=60?'#C25A28':RED;
+    document.getElementById('mUse').textContent=useful;document.getElementById('mWaste').textContent=wasted;
+    document.getElementById('impact').textContent=impactMsg(pct);
+    renderCLI();
+  }
+  function updateCtl(i,h,state){
+    var row=document.getElementById('row'+i);
+    var tg=row.querySelector('.toggle');tg.textContent=h.joined?'▶ Watching':'■ Turned off';tg.className='toggle '+(h.joined?'on':'off');
+    var sb=row.querySelector('.srcbtn');
+    if(mode==='v3'&&h.joined&&!floodAll()){sb.style.display='inline-block';sb.textContent=h.filter==='AB'?'Cam 1 + 2':'Cam 1 only';sb.className='srcbtn '+(h.filter==='AB'?'ab':'');}
+    else sb.style.display='none';
+    var dot=row.querySelector('.dot');dot.className='dot '+(state==='clean'?'good':(state==='off'?'off':'warn'));
+  }
+  function renderCLI(){
+    var ver=mode==='v1'?'1':mode==='v2'?'2':'3',L=[];
+    L.push('<span class="com">! Managed switch  -  VLAN 10 (multicast)</span>');
+    L.push(snooping?'<span class="cmd">ip igmp snooping</span>':'<span class="cmd">no ip igmp snooping</span>');
+    L.push('<span class="cmd">ip igmp snooping vlan 10</span>');
+    if(snooping&&querier)L.push('<span class="cmd">ip igmp snooping vlan 10 </span><span class="kw">querier</span>');
+    else if(snooping)L.push('<span class="com">! (no querier configured on vlan 10)</span>');
+    L.push('<span class="com">!</span>');
+    L.push('<span class="cmd">interface Vlan10</span>');
+    L.push('<span class="cmd"> ip igmp version </span><span class="kw">'+ver+'</span>');
+    if(mode==='v3'&&snooping&&querier)L.push('<span class="com"> ! v3 enables source-specific (SSM) filtering</span>');
+    L.push('<span class="com">!</span>');
+    if(!snooping)L.push('<span class="warn">! RESULT: snooping disabled -> multicast floods all ports</span>');
+    else if(!querier)L.push('<span class="warn">! RESULT: no querier -> membership cannot be built -> flooding</span>');
+    else if(mode==='v1')L.push('<span class="ok">! RESULT: pruning works, but no source filter and slow leave</span>');
+    else if(mode==='v2')L.push('<span class="ok">! RESULT: fast leave works, but no source filtering</span>');
+    else L.push('<span class="ok">! RESULT: source-specific filtering active - unwanted sources blocked</span>');
+    document.getElementById('cli').innerHTML=L.join('\n');
+  }
+  var ctl=document.getElementById('hostCtl');
+  hosts.forEach(function(h,i){
+    var row=document.createElement('div');row.className='host';row.id='row'+i;
+    row.innerHTML='<span class="dot"></span><span class="name">Screen '+(i+1)+'</span><button class="srcbtn"></button><button class="toggle"></button>';
+    ctl.appendChild(row);
+    row.querySelector('.toggle').addEventListener('click',function(){toggleJoin(i);});
+    row.querySelector('.srcbtn').addEventListener('click',function(){hosts[i].filter=hosts[i].filter==='AB'?'A':'AB';render();});
+  });
+  function clearFlood(){hosts.forEach(function(h){h.flooded=false;if(h.t)clearTimeout(h.t);});}
+  function toggleJoin(i){var h=hosts[i];
+    if(h.joined){h.joined=false;
+      if(mode==='v1'&&!floodAll()){h.flooded=true;if(h.t)clearTimeout(h.t);h.t=setTimeout(function(){h.flooded=false;render();},6000);}else h.flooded=false;
+    }else{h.joined=true;h.flooded=false;if(h.t)clearTimeout(h.t);}
+    render();
+  }
+  document.querySelectorAll('#modes button').forEach(function(b){b.addEventListener('click',function(){mode=b.dataset.mode;clearFlood();render();});});
+  document.getElementById('snoopBtn').addEventListener('click',function(){snooping=!snooping;clearFlood();render();});
+  document.getElementById('querierBtn').addEventListener('click',function(){querier=!querier;clearFlood();render();});
+  render();
+})();
+(function(){
+  var R=118,cx=150,cy=150,N=6,g=document.getElementById('globeMer'),mer=[];
+  if(!g)return;
+  for(var i=0;i<N;i++){var e=document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+    e.setAttribute('cx',cx);e.setAttribute('cy',cy);e.setAttribute('ry',R);e.setAttribute('fill','none');
+    e.setAttribute('stroke','#2A7D75');e.setAttribute('stroke-width','1');e.setAttribute('stroke-opacity','0.32');
+    g.appendChild(e);mer.push(e);}
+  var a=0;
+  function tick(){a+=0.005;for(var i=0;i<N;i++){mer[i].setAttribute('rx',(Math.abs(Math.cos(a+i*Math.PI/N))*R).toFixed(1));}requestAnimationFrame(tick);}
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
