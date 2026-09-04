@@ -27,7 +27,13 @@ require_once __DIR__ . '/lib/Mailer.php';
 require_once __DIR__ . '/lib/GraphMailer.php';
 
 // ===== LOAD CONFIG =====
-$configFile = __DIR__ . '/mail-config.php';
+// Prefer a copy one level above the webroot: Hostinger's git auto-deploy
+// only replaces public_html, so a config file living outside it survives
+// every push instead of getting wiped and needing a manual re-upload.
+$configFile = dirname(__DIR__) . '/mail-config.php';
+if (!file_exists($configFile)) {
+    $configFile = __DIR__ . '/mail-config.php';
+}
 $config = file_exists($configFile) ? require $configFile : null;
 if (!is_array($config)) {
     // Don't crash hard - we can still log the lead even with no mail config.

@@ -58,7 +58,13 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST')    {
 }
 
 // ---------- Load config ----------
-$configFile = __DIR__ . '/mail-config.php';
+// Prefer a copy one level above the webroot: Hostinger's git auto-deploy
+// only replaces public_html, so a config file living outside it survives
+// every push instead of getting wiped and needing a manual re-upload.
+$configFile = dirname(__DIR__) . '/mail-config.php';
+if (!file_exists($configFile)) {
+    $configFile = __DIR__ . '/mail-config.php';
+}
 $config = file_exists($configFile) ? require $configFile : [];
 
 $groqKey    = trim((string)($config['groq']['api_key']    ?? ''));
